@@ -7,4 +7,5 @@
 module.exports = function (api) {
   //
 	console.log('NOT READY FOR USE')
+	return true
 }

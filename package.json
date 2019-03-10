@@ -4,11 +4,12 @@
   "description": "A Quasar CLI Extension",
   "author": "Daniel Thompson-Yvetot <35242872+nothingismagick@users.noreply.github.com>",
   "main": "src/index.js",
+  "license": "MIT",
   "publishConfig": {
     "access": "public"
   },
   "scripts": {
-    "precommit": "yarn test && yarn make-badges && lint-staged",
+    "precommit": "yarn test && snyk test --dev && node node_modules/.bin/jest-badges-readme && lint-staged",
     "lint": "eslint --ext .js,.vue src",
     "make-badges": "jest-badges-readme",
     "test": "jest",

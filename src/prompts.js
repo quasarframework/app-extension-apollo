@@ -36,5 +36,13 @@
  */
 
 module.exports = function () {
-  return []
+  return [
+    {
+      name: {
+        type: 'string',
+        required: true,
+        message: 'Quasar CLI Extension',
+      }
+    }
+  ]
 }

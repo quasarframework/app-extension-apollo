@@ -2,6 +2,29 @@
 // https://jestjs.io/docs/en/configuration.html
 
 module.exports = {
+  coverageDirectory: '<rootDir>/test/coverage',
+  collectCoverageFrom: [
+    '<rootDir>/src/*.js',
+    '<rootDir>/src/*.ts',
+    '<rootDir>/src/*.jsx'
+  ],
+  coverageThreshold: {
+    global: {
+      //  branches: 50,
+      //  functions: 50,
+      //  lines: 50,
+      //  statements: 50
+    }
+  },
+  testMatch: [
+    '<rootDir>/test/__tests__/**/*.spec.js',
+  ],
+  coverageReporters: [
+    "json-summary",
+    "text",
+    "lcov"
+  ],
+  collectCoverage: true,
   // All imported modules in your tests should be mocked automatically
   // automock: false,
 
@@ -182,10 +205,5 @@ module.exports = {
 
   // Whether to use watchman for file crawling
   // watchman: true,
-  coverageReporters: [
-    "json-summary",
-    "text",
-    "lcov"
-  ],
-  collectCoverage: true
+
 }
