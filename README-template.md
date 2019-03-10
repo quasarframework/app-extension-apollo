@@ -6,7 +6,7 @@
  |-------|------------|----------|-----------|
  | ![Statements](#statements# "Make me better!") | ![Branches](#branches# "Make me better!") | ![Functions](#functions# "Make me better!") | ![Lines](#lines# "Make me better!") 
 
-This it the official Quasar 1.0 App-Extension for graphql.
+This is the official Quasar 1.0 App-Extension for graphql.
 
 ## Installation
 IN DEVELOPMENT, DO NOT USE YET.
