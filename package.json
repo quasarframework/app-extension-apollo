@@ -9,13 +9,13 @@
     "access": "public"
   },
   "scripts": {
-    "pre-commit": "yarn test && snyk test --dev && node node_modules/.bin/jest-badges-readme && lint-staged",
     "lint": "eslint --ext .js,.vue src",
     "make-badges": "jest-badges-readme",
     "test": "jest",
     "audit:snyk": "snyk test --org=info-fth --json > ./test/audits/snyk.json",
     "audit:node_modules": "yarn audit --json > ./test/audits/node_modules_audit.json",
-    "audit:licenses": "nlf --summary detail > ./test/audits/licenses.txt"
+    "audit:licenses": "nlf --summary detail > ./test/audits/licenses.txt",
+    "precommit": "yarn test && snyk test --dev && node node_modules/.bin/jest-badges-readme && lint-staged"
   },
   "engines": {
     "node": ">= 8.9.0",
