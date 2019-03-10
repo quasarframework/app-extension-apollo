@@ -25,6 +25,11 @@ module.exports = {
     "lcov"
   ],
   collectCoverage: true,
+  transform: {
+    '.*\\.js$': 'babel-jest'
+    // use these if NPM is being flaky
+    // '.*\\.js$': '<rootDir>/node_modules/@quasar/quasar-app-extension-testing-unit-jest/node_modules/babel-jest'
+  },
   // All imported modules in your tests should be mocked automatically
   // automock: false,
 
@@ -45,9 +50,6 @@ module.exports = {
 
   // An array of glob patterns indicating a set of files for which coverage information should be collected
   // collectCoverageFrom: null,
-
-  // The directory where Jest should output its coverage files
-  coverageDirectory: "coverage",
 
   // An array of regexp pattern strings used to skip coverage collection
   // coveragePathIgnorePatterns: [

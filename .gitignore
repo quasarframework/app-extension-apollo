@@ -1,0 +1,12 @@
+.DS_Store
+.idea
+node_modules
+coverage
+/**/.nyc_output
+/**/.quasar
+/packages/*/dist
+/packages/*/node_modules
+/**/*.log
+/**/coverage
+*.env
+/**/.env
