@@ -8,8 +8,8 @@
  * @param {function} api
  * @returns {boolean}
  */
-
 module.exports = function (api) {
 	console.log('NOT READY FOR USE')
 	api.render('./base', {}, true)
+	return true
 }

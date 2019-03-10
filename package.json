@@ -15,7 +15,7 @@
   },
   "scripts": {
     "lint": "eslint --ext .js,.vue src",
-    "make-badges": "jest-badges-readme",
+    "make-badges": "node node_modules/.bin/jest-badges-readme",
     "test": "jest",
     "audit:snyk": "snyk test --org=info-fth --json > ./test/audits/snyk.json",
     "audit:node_modules": "yarn audit --json > ./test/audits/node_modules_audit.json",
