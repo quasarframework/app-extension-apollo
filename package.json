@@ -1,0 +1,43 @@
+{
+  "name": "@quasar/quasar-app-extension-graphql",
+  "version": "1.0.0-alpha.1",
+  "description": "A Quasar CLI Extension",
+  "author": "Daniel Thompson-Yvetot <35242872+nothingismagick@users.noreply.github.com>",
+  "main": "src/index.js",
+  "publishConfig": {
+    "access": "public"
+  },
+  "scripts": {
+    "precommit": "yarn test && yarn make-badges && lint-staged",
+    "lint": "eslint --ext .js,.vue src",
+    "make-badges": "jest-badges-readme",
+    "test": "jest",
+    "audit:snyk": "snyk test --org=info-fth --json > ./test/audits/snyk.json",
+    "audit:node_modules": "yarn audit --json > ./test/audits/node_modules_audit.json",
+    "audit:licenses": "nlf --summary detail > ./test/audits/licenses.txt"
+  },
+  "engines": {
+    "node": ">= 8.9.0",
+    "npm": ">= 5.6.0",
+    "yarn": ">= 1.6.0"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "@babel/core": "^7.3.4",
+    "@babel/preset-env": "^7.3.4",
+    "@olavoparno/jest-badges-readme": "^1.2.6",
+    "babel-eslint": "10.0.1",
+    "babel-jest": "^24.3.1",
+    "eslint": "5.9.0",
+    "eslint-config-standard": "12.0.0",
+    "eslint-plugin-import": "2.14.0",
+    "eslint-plugin-node": "8.0.0",
+    "eslint-plugin-promise": "4.0.1",
+    "eslint-plugin-standard": "4.0.0",
+    "eslint-plugin-vue": "4.7.1",
+    "jest": "^24.3.1",
+    "lint-staged": "8.1.0",
+    "nlf": "^2.0.1",
+    "snyk": "^1.136.1"
+  }
+}
