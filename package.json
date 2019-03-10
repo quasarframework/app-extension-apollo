@@ -9,7 +9,7 @@
     "access": "public"
   },
   "scripts": {
-    "precommit": "yarn test && snyk test --dev && node node_modules/.bin/jest-badges-readme && lint-staged",
+    "pre-commit": "yarn test && snyk test --dev && node node_modules/.bin/jest-badges-readme && lint-staged",
     "lint": "eslint --ext .js,.vue src",
     "make-badges": "jest-badges-readme",
     "test": "jest",
