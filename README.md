@@ -4,7 +4,7 @@
 
 | Statements | Branches | Functions | Lines |
  |-------|------------|----------|-----------|
- | ![Statements](https://img.shields.io/badge/Coverage-77.78%25-red.svg "Make me better!") | ![Branches](https://img.shields.io/badge/Coverage-100%25-brightgreen.svg "Make me better!") | ![Functions](https://img.shields.io/badge/Coverage-75%25-red.svg "Make me better!") | ![Lines](https://img.shields.io/badge/Coverage-77.78%25-red.svg "Make me better!") 
+ | ![Statements](https://img.shields.io/badge/Coverage-100%25-brightgreen.svg "Make me better!") | ![Branches](https://img.shields.io/badge/Coverage-100%25-brightgreen.svg "Make me better!") | ![Functions](https://img.shields.io/badge/Coverage-100%25-brightgreen.svg "Make me better!") | ![Lines](https://img.shields.io/badge/Coverage-100%25-brightgreen.svg "Make me better!") 
 
 This is the official Quasar 1.0 App-Extension for graphql.
 
