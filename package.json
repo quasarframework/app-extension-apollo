@@ -20,7 +20,8 @@
     "audit:snyk": "snyk test --org=info-fth --json > ./test/audits/snyk.json",
     "audit:node_modules": "yarn audit --json > ./test/audits/node_modules_audit.json",
     "audit:licenses": "nlf --summary detail > ./test/audits/licenses.txt",
-    "precommit": "yarn test && node node_modules/.bin/snyk test && node node_modules/.bin/jest-badges-readme && git add 'README.md' && node_modules/.bin/lint-staged"
+    "precommit": "yarn test && node node_modules/.bin/snyk test && node node_modules/.bin/jest-badges-readme && git add 'README.md' && node node_modules/.bin/lint-staged",
+    "postcommit": "echo 'should publish to gh-docs'"
   },
   "dependencies": {
     "apollo-cache-inmemory": "^1.5.1",

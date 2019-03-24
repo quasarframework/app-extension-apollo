@@ -37,12 +37,22 @@
 
 module.exports = function () {
   return [
-    {
-      name: {
-        type: 'string',
-        required: true,
-        message: 'Quasar CLI Extension',
-      }
-    }
+	  {
+		  name: 'options',
+		  type: 'checkbox',
+		  required: true,
+		  message:
+			  'AVA Unit testing will now be installed. Please choose additional options:',
+		  choices: [
+			  {
+				  name: 'Install Server',
+				  value: 'server'
+			  },
+			  {
+				  name: 'Install Apollo',
+				  value: 'apollo'
+			  }
+		  ]
+	  }
   ]
 }
