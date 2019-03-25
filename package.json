@@ -2,7 +2,7 @@
   "name": "@quasar/quasar-app-extension-graphql",
   "version": "1.0.0-alpha.1",
   "description": "A Quasar CLI Extension",
-  "author": "Daniel Thompson-Yvetot <35242872+nothingismagick@users.noreply.github.com>",
+  "contributors": ["Daniel Thompson-Yvetot <35242872+nothingismagick@users.noreply.github.com>", "Scott Molinari <scott.molinari@adduco.de>"],
   "homepage": "http://quasar-framework.org",
   "repository": "https://github.com/quasarframework/quasar-app-extension-graphql",
   "bugs": {
