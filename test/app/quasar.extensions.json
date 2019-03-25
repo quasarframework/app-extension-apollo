@@ -17,5 +17,10 @@
       "e2e-cypress"
     ]
   },
-  "@quasar/graphql": {}
+  "@quasar/graphql": {
+    "options": [
+      "server",
+      "apollo"
+    ]
+  }
 }

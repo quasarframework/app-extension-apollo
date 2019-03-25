@@ -5,5 +5,7 @@
  */
 
 module.exports = function (api) {
-  api.render('./templates', {}, true)
+	console.log('NOT READY FOR USE')
+	api.render('./templates/base')
+	return true
 }
