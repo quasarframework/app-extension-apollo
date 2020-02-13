@@ -1,8 +1,0 @@
-{
-  "unit-jest": {
-    "runnerCommand": "jest"
-  },
-  "e2e-cypress": {
-    "runnerCommand": "cypress run --config baseUrl=${serverUrl}"
-  }
-}

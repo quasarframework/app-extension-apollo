@@ -1,6 +1,0 @@
-/.quasar
-/dist
-*.worker.js
-*-sw.js
-/src-pwa
-/config
