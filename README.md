@@ -1,32 +1,80 @@
-# app-extension-graphql [WIP]
-![official icon](https://img.shields.io/badge/Quasar%201.0-Official%20App%20Extension-blue.svg)
-<a href="https://v1.quasar-framework.org" target="_blank"><img src="https://badge.fury.io/js/%40quasar%2Fquasar-app-extension-graphql.svg"></a>
+# Quasar GraphQL App Extension
 
-| Statements | Branches | Functions | Lines |
- |-------|------------|----------|-----------|
- | ![Statements](https://img.shields.io/badge/Coverage-100%25-brightgreen.svg "Make me better!") | ![Branches](https://img.shields.io/badge/Coverage-100%25-brightgreen.svg "Make me better!") | ![Functions](https://img.shields.io/badge/Coverage-100%25-brightgreen.svg "Make me better!") | ![Lines](https://img.shields.io/badge/Coverage-100%25-brightgreen.svg "Make me better!") 
+## Introduction
 
-This is the official Quasar 1.0 App-Extension for graphql.
+This app extension adds graphql support to your quasar projects.
 
-##Development Requirements
+It uses [Apollo GraphQL](https://www.apollographql.com) and its vue plugin [Vue Apollo](https://apollo.vuejs.org)
 
-**Base Requirements**
-- [ ] - Question user to use either Apollo Boost or the more advanced configuration 
-- [ ] - Make sure config is set up in an external file like `quasar.apollo.conf.js` or just `apollo.conf.js`
-- [ ] - Ask the user, if QEnv or QDotenv should also be installed for special/ confidential data
-- [ ] - Ask the user, if an Apollo Server should be created as a simple demo GraphQL backend
-- [ ] - Ask the user, if an example app should be installed, which will also need the GraphQL demo backend
-
-**Nice to Haves**
-- [ ] - Ask the user, if other GraphQL backends should be installed (i.e. Prisma or Yoga)
-- [ ] - 
-- [ ] - 
-- [ ] - 
-- [ ] - 
+Server side rendering (SSR) mode is supported by this extension.
 
 ## Installation
-IN DEVELOPMENT, DO NOT USE YET.
 
+```sh
+quasar ext add @quasar/graphql
 ```
-$ quasar ext add @quasar/graphql
+
+Quasar CLI will retrieve the extension from NPM ([@quasar/quasar-app-extension-graphql](https://www.npmjs.com/package/@quasar/quasar-app-extension-graphql))
+
+**Note:** Some code will be added to the html template file of your app (`src/index.template.html`)
+
+## Prompts
+
+You will be prompted to enter the URI of your GraphQL endpoint. You can skip this and instead provide the URI using an env variable when running quasar:
+
+```sh
+GRAPHQL_URI=https://prod.example.com/graphql quasar build
+GRAPHQL_URI=https://dev.example.com/graphql quasar dev
+```
+
+If you don't have a GraphQL endpoint yet, you can create one to experiment with at [FakeQL](https://fakeql.com) or other similar services.
+
+## Uninstall
+
+```sh
+quasar ext remove @quasar/graphql
+```
+
+**Note:** The added code to the html template file (`src/index.template.html`) will be removed.
+
+## Usage
+
+Check the guide in [Vue Apollo docs](https://apollo.vuejs.org/guide/apollo/)
+
+Example usage:
+
+`src/pages/Index.vue`
+
+```html
+<template>
+  <q-page>
+    <!-- when the query response is not received yet, data from it is undefined,
+    so before referring to it we need to use v-if -->
+    <div v-if="post">
+      GraphQL query result:<br>{{ post.title }}
+    </div>
+    <div v-else>
+      loading...
+    </div>
+  </q-page>
+</template>
+
+<script>
+import gql from 'graphql-tag'
+
+export default {
+  name: 'PageIndex',
+
+  // https://apollo.vuejs.org/guide/apollo/#usage-in-vue-components
+  apollo: {
+    post: {
+      query: gql`query {
+        post(id: 5) {
+          title
+        }
+      }`
+    }
+  }
+}
+</script>
 ```

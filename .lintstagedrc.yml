@@ -1,3 +1,0 @@
-linters:
-  src/*.{js}:
-  - eslint
