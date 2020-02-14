@@ -9,7 +9,7 @@ module.exports = function () {
       name: 'graphql_uri',
       type: 'input',
       required: false,
-      message: 'GraphQL endpoint URI',
+      message: 'GraphQL endpoint URI (You can skip it now and set it later)',
       default: 'http://api.example.com'
     }
   ]

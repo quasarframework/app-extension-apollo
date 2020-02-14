@@ -22,4 +22,7 @@ module.exports = function (api) {
       if (err) { return console.log(err) }
     })
   })
+
+  // render templates in the app
+  api.render('./templates', { prompts: api.prompts })
 }
