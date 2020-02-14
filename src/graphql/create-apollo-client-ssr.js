@@ -17,7 +17,7 @@ export default function () {
     // you can define the 'uri' in 'src/params.js' or using an env variable when
     // running quasar commands, for example:
     // `GRAPHQL_URI=https://api.example.com quasar build`
-    uri: process.env.GRAPHQL_URI || conf['@ejez/graphql'].graphql_uri
+    uri: process.env.GRAPHQL_URI || conf['@quasar/graphql'].graphql_uri
   }
   // when on server, we use 'node-fetch' polyfill
   // https://www.apollographql.com/docs/link/links/http/#fetch-polyfill
