@@ -46,6 +46,12 @@ quasar ext remove @quasar/graphql
 
 **Note:** The added code to the html template file (`src/index.template.html`) will be removed.
 
+**Warning** Added directory `src/quasar-app-extension-graphql` will be removed, if you need make a backup before uninstalling the extension.
+
+## Configuration
+
+Apollo client can be configured through `src/quasar-app-extension-graphql/apollo-client-config.js`
+
 ## Usage
 
 Check the guide in [Vue Apollo docs](https://apollo.vuejs.org/guide/apollo/)
@@ -93,7 +99,7 @@ export default {
 ### Base Requirements
 
 - [ ] - Question user to use either Apollo Boost or the more advanced configuration
-- [ ] - Make sure config is set up in an external file like `quasar.apollo.conf.js` or just `apollo.conf.js`
+- [x] - Make sure config is set up in an external file like `quasar.apollo.conf.js` or just `apollo.conf.js`
 - [ ] - Ask the user, if QEnv or QDotenv should also be installed for special/ confidential data
 - [ ] - Ask the user, if an Apollo Server should be created as a simple demo GraphQL backend
 - [ ] - Ask the user, if an example app should be installed, which will also need the GraphQL demo backend

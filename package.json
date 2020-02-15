@@ -1,11 +1,11 @@
 {
   "name": "@quasar/quasar-app-extension-graphql",
-  "version": "1.0.0-alpha.2",
+  "version": "1.0.0-alpha.3",
   "description": "A Quasar app extension to add GraphQL support",
   "contributors": [
     "Daniel Thompson-Yvetot <35242872+nothingismagick@users.noreply.github.com>",
     "Scott Molinari <scott.molinari@adduco.de>"
-  ],    
+  ],
   "license": "MIT",
   "publishConfig": {
     "access": "public"
@@ -33,6 +33,7 @@
     "graphql": "^14.6.0",
     "graphql-tag": "^2.10.3",
     "node-fetch": "^2.6.0",
-    "vue-apollo": "^3.0.3"
+    "vue-apollo": "^3.0.3",
+    "webpack-merge": "^4.2.2"
   }
 }
