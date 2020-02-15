@@ -21,5 +21,5 @@ module.exports = function (api) {
   })
 
   // remove added directory
-  api.removePath('src/quasar-app-extension-graphql')
+  api.removePath('src/quasar-app-extension-apollo')
 }

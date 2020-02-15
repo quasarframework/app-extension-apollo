@@ -1,5 +1,5 @@
 import merge from 'webpack-merge'
-import config from 'src/quasar-app-extension-graphql/apollo-client-config'
+import config from 'src/quasar-app-extension-apollo/apollo-client-config'
 
 // quasar mode (spa, ssr,...)
 const quasarMode = process.env.MODE
