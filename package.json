@@ -1,6 +1,6 @@
 {
   "name": "@m8a/quasar-app-extension-apollo",
-  "version": "1.0.0-alpha.4",
+  "version": "1.0.0-alpha.5",
   "description": "A Quasar app extension to add GraphQL support via Apollo Client",
   "contributors": [
     "Ejez",
