@@ -20,10 +20,10 @@ Server side rendering (SSR) mode is also supported by this extension.
 ## Installation
 
 ```sh
-quasar ext add @m8a/quasar-app-extension-apollo
+quasar ext add @m8a/apollo
 ```
 
-Quasar CLI will retrieve the extension from NPM ([@quasar/quasar-app-extension-graphql](https://www.npmjs.com/package/@quasar/quasar-app-extension-graphql))
+Quasar CLI will retrieve the extension from NPM ([@m8a/quasar-app-extension-graphql](https://www.npmjs.com/package/@m8a/quasar-app-extension-graphql))
 
 **Note:** Some code will be added to the html template file of your app (`src/index.template.html`)
 
@@ -41,7 +41,7 @@ If you don't have a GraphQL endpoint yet, you can create one to experiment with 
 ## Uninstall
 
 ```sh
-quasar ext remove @m8a/quasar-app-extension-apollo
+quasar ext remove @m8a/apollo
 ```
 
 **Note:** The added code to the html template file (`src/index.template.html`) will be removed.
