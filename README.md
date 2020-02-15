@@ -1,7 +1,7 @@
 # app-extension-apollo
 
 ![official icon](https://img.shields.io/badge/Quasar%201.0-Official%20App%20Extension-blue.svg)
-<a href="https://quasar.dev" target="_blank"><img src="https://badge.fury.io/js/%40quasar%2Fquasar-app-extension-graphql.svg"></a>
+<a href="https://quasar.dev" target="_blank"><img src="https://badge.fury.io/js/%40quasar%2Fquasar-app-extension-apollo.svg"></a>
 
 | Statements | Branches | Functions | Lines |
  |-------|------------|----------|-----------|
@@ -23,7 +23,7 @@ Server side rendering (SSR) mode is also supported by this extension.
 quasar ext add apollo
 ```
 
-Quasar CLI will retrieve the extension from NPM ([@quasar/quasar-app-extension-graphql](https://www.npmjs.com/package/@quasar/quasar-app-extension-graphql))
+Quasar CLI will retrieve the extension from NPM ([@quasar/quasar-app-extension-apollo](https://www.npmjs.com/package/@quasar/quasar-app-extension-apollo))
 
 **Note:** Some code will be added to the html template file of your app (`src/index.template.html`)
 
@@ -46,11 +46,11 @@ quasar ext remove apollo
 
 **Note:** The added code to the html template file (`src/index.template.html`) will be removed.
 
-**Warning** Added directory `src/quasar-app-extension-graphql` will be removed, if you need make a backup before uninstalling the extension.
+**Warning** Added directory `src/quasar-app-extension-apollo` will be removed, if you need make a backup before uninstalling the extension.
 
 ## Configuration
 
-Apollo client can be configured through `src/quasar-app-extension-graphql/apollo-client-config.js`
+Apollo client can be configured through `src/quasar-app-extension-apollo/apollo-client-config.js`
 
 ## Usage
 

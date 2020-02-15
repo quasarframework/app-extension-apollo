@@ -5,10 +5,10 @@ function extendConf (conf, api) {
   const bootFile = api.ctx.mode.ssr ? 'apollo-ssr' : 'apollo'
 
   // register boot file
-  conf.boot.push(`~@quasar/quasar-app-extension-graphql/src/boot/${bootFile}`)
+  conf.boot.push(`~@quasar/quasar-app-extension-apollo/src/boot/${bootFile}`)
 
   // make sure app extension files get transpiled
-  conf.build.transpileDependencies.push(/quasar-app-extension-graphql[\\/]src/)
+  conf.build.transpileDependencies.push(/quasar-app-extension-apollo[\\/]src/)
 
   // allow overriding of graphql uri using an env variable
   // https://quasar.dev/quasar-cli/cli-documentation/handling-process-env#Adding-to-process.env
