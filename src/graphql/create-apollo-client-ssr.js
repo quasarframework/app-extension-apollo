@@ -3,6 +3,7 @@ import { HttpLink } from 'apollo-link-http'
 import { InMemoryCache } from 'apollo-cache-inmemory'
 import fetch from 'node-fetch'
 import getApolloClientConfig from './get-apollo-client-config'
+import { apolloClientBeforeCreate, apolloClientAfterCreate } from 'src/quasar-app-extension-apollo/apollo-client-hooks'
 
 // `true` when this code runs on server (node environment), `false` when on
 // client (web browser for example)
@@ -27,6 +28,18 @@ export default function ({ app, router, store, ssrContext, urlPath, redirect }) 
     cache.restore(window.__APOLLO_STATE__.defaultClient)
   }
 
-  // create and return an `apollo client` instance
-  return new ApolloClient({ link, cache, ...cfg.additionalConfig })
+  // object that will be used to instantiate apollo client
+  const apolloClientConfigObj = { link, cache, ...cfg.additionalConfig }
+
+  // run hook before creating apollo client instance
+  apolloClientBeforeCreate({ apolloClientConfigObj, app, router, store, ssrContext, urlPath, redirect })
+
+  // create an `apollo client` instance
+  const apolloClient = new ApolloClient(apolloClientConfigObj)
+
+  // run hook after creating apollo client instance
+  apolloClientAfterCreate({ apolloClient, app, router, store, ssrContext, urlPath, redirect })
+
+  // return `apollo client` instance
+  return apolloClient
 }
