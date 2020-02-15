@@ -6,13 +6,13 @@ import createApolloClient from '../graphql/create-apollo-client-ssr'
 // Install the vue plugin
 Vue.use(VueApollo)
 
-// create an 'apollo client' instance
-const apolloClient = createApolloClient()
+export default ({ app, router, store, ssrContext, urlPath, redirect }) => {
+  // create an 'apollo client' instance
+  const apolloClient = createApolloClient({ app, router, store, ssrContext, urlPath, redirect })
 
-// create an 'apollo provider' instance
-const apolloProvider = new VueApollo({ defaultClient: apolloClient })
+  // create an 'apollo provider' instance
+  const apolloProvider = new VueApollo({ defaultClient: apolloClient })
 
-export default ({ app, ssrContext }) => {
   // attach created 'apollo provider' instance to the app
   app.apolloProvider = apolloProvider
 

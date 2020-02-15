@@ -9,15 +9,18 @@ const quasarMode = process.env.MODE
 // https://quasar.dev/quasar-cli/cli-documentation/handling-process-env#Values-supplied-by-Quasar-CLI
 const onServer = process.env.SERVER
 
-export default function () {
+export default function ({ app, router, store, ssrContext, urlPath, redirect }) {
+  // get raw configuration provided by the app
+  const rawConfig = config({ app, router, store, ssrContext, urlPath, redirect })
+
   // merge provided configs.
   // specific mode configs will be merged to the default config
   return merge(
-    config.default,
-    config[quasarMode],
-    (process.env.DEV ? config.dev : {}),
-    (process.env.PROD ? config.prod : {}),
-    ((quasarMode === 'ssr' && onServer) ? config.ssrOnServer : {}),
-    ((quasarMode === 'ssr' && !onServer) ? config.ssrOnClient : {})
+    rawConfig.default,
+    rawConfig[quasarMode],
+    (process.env.DEV ? rawConfig.dev : {}),
+    (process.env.PROD ? rawConfig.prod : {}),
+    ((quasarMode === 'ssr' && onServer) ? rawConfig.ssrOnServer : {}),
+    ((quasarMode === 'ssr' && !onServer) ? rawConfig.ssrOnClient : {})
   )
 }

@@ -3,10 +3,10 @@ import { HttpLink } from 'apollo-link-http'
 import { InMemoryCache } from 'apollo-cache-inmemory'
 import getApolloClientConfig from './get-apollo-client-config'
 
-const cfg = getApolloClientConfig()
-
 // function that returns an 'apollo client' instance
-export default function () {
+export default function ({ app, router, store, urlPath, redirect }) {
+  const cfg = getApolloClientConfig({ app, router, store, urlPath, redirect })
+
   // create apollo client link
   const link = new HttpLink(cfg.httpLinkConfig)
 
