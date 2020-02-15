@@ -1,9 +1,9 @@
 {
-  "name": "@quasar/quasar-app-extension-apollo",
-  "version": "1.0.0-alpha.4",
-  "description": "A Quasar app extension to add GraphQL support",
+  "name": "@m8a/quasar-app-extension-apollo",
+  "version": "1.0.0-alpha.5",
+  "description": "A Quasar app extension to add GraphQL support via Apollo Client",
   "contributors": [
-    "Daniel Thompson-Yvetot <35242872+nothingismagick@users.noreply.github.com>",
+    "Ejez",
     "Scott Molinari <scott.molinari@adduco.de>"
   ],
   "license": "MIT",
