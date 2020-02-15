@@ -1,4 +1,4 @@
-# app-extension-graphql
+# app-extension-apollo
 
 ![official icon](https://img.shields.io/badge/Quasar%201.0-Official%20App%20Extension-blue.svg)
 <a href="https://quasar.dev" target="_blank"><img src="https://badge.fury.io/js/%40quasar%2Fquasar-app-extension-graphql.svg"></a>
@@ -7,20 +7,20 @@
  |-------|------------|----------|-----------|
  | ![Statements](https://img.shields.io/badge/Coverage-100%25-brightgreen.svg "Make me better!") | ![Branches](https://img.shields.io/badge/Coverage-100%25-brightgreen.svg "Make me better!") | ![Functions](https://img.shields.io/badge/Coverage-100%25-brightgreen.svg "Make me better!") | ![Lines](https://img.shields.io/badge/Coverage-100%25-brightgreen.svg "Make me better!")
 
-This is the official Quasar App-Extension for graphql.
+This is the official Quasar App-Extension for adding Graphql to your Quasar project.
 
 ## Introduction
 
-This app extension adds graphql support to your quasar projects.
+This app extension adds Graphql support to your Quasar projects.
 
-It uses [Apollo GraphQL](https://www.apollographql.com) and its vue plugin [Vue Apollo](https://apollo.vuejs.org)
+It uses [Apollo Client](https://www.apollographql.com) and the [Vue Apollo](https://apollo.vuejs.org) plugin.
 
-Server side rendering (SSR) mode is supported by this extension.
+Server side rendering (SSR) mode is also supported by this extension.
 
 ## Installation
 
 ```sh
-quasar ext add @quasar/graphql
+quasar ext add apollo
 ```
 
 Quasar CLI will retrieve the extension from NPM ([@quasar/quasar-app-extension-graphql](https://www.npmjs.com/package/@quasar/quasar-app-extension-graphql))
@@ -29,7 +29,7 @@ Quasar CLI will retrieve the extension from NPM ([@quasar/quasar-app-extension-g
 
 ## Prompts
 
-You will be prompted to enter the URI of your GraphQL endpoint. You can skip this and instead provide the URI using an env variable when running quasar:
+You will be prompted to enter the URI of your GraphQL endpoint. You can skip this and instead provide the URI using an env variable when running Quasar:
 
 ```sh
 GRAPHQL_URI=https://prod.example.com/graphql quasar build
@@ -41,7 +41,7 @@ If you don't have a GraphQL endpoint yet, you can create one to experiment with 
 ## Uninstall
 
 ```sh
-quasar ext remove @quasar/graphql
+quasar ext remove apollo
 ```
 
 **Note:** The added code to the html template file (`src/index.template.html`) will be removed.
@@ -94,7 +94,7 @@ export default {
 </script>
 ```
 
-## Development Requirements
+## Further Development Requirements
 
 ### Base Requirements
 
