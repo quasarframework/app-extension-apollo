@@ -3,20 +3,21 @@ import { HttpLink } from 'apollo-link-http'
 import { InMemoryCache } from 'apollo-cache-inmemory'
 import fetch from 'node-fetch'
 import getApolloClientConfig from './get-apollo-client-config'
-
-const cfg = getApolloClientConfig()
+import { apolloClientBeforeCreate, apolloClientAfterCreate } from 'src/quasar-app-extension-apollo/apollo-client-hooks'
 
 // `true` when this code runs on server (node environment), `false` when on
 // client (web browser for example)
 // https://quasar.dev/quasar-cli/cli-documentation/handling-process-env#Values-supplied-by-Quasar-CLI
 const onServer = process.env.SERVER
 
-// when on server, we use 'node-fetch' polyfill
-// https://www.apollographql.com/docs/link/links/http/#fetch-polyfill
-if (onServer) { cfg.httpLinkConfig.fetch = fetch }
-
 // function that returns an 'apollo client' instance
-export default function () {
+export default function ({ app, router, store, ssrContext, urlPath, redirect }) {
+  const cfg = getApolloClientConfig({ app, router, store, ssrContext, urlPath, redirect })
+
+  // when on server, we use 'node-fetch' polyfill
+  // https://www.apollographql.com/docs/link/links/http/#fetch-polyfill
+  if (onServer) { cfg.httpLinkConfig.fetch = fetch }
+
   // create apollo client link
   const link = new HttpLink(cfg.httpLinkConfig)
 
@@ -27,6 +28,18 @@ export default function () {
     cache.restore(window.__APOLLO_STATE__.defaultClient)
   }
 
-  // create and return an `apollo client` instance
-  return new ApolloClient({ link, cache, ...cfg.additionalConfig })
+  // object that will be used to instantiate apollo client
+  const apolloClientConfigObj = { link, cache, ...cfg.additionalConfig }
+
+  // run hook before creating apollo client instance
+  apolloClientBeforeCreate({ apolloClientConfigObj, app, router, store, ssrContext, urlPath, redirect })
+
+  // create an `apollo client` instance
+  const apolloClient = new ApolloClient(apolloClientConfigObj)
+
+  // run hook after creating apollo client instance
+  apolloClientAfterCreate({ apolloClient, app, router, store, ssrContext, urlPath, redirect })
+
+  // return `apollo client` instance
+  return apolloClient
 }
