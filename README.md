@@ -50,7 +50,9 @@ quasar ext remove @quasar/apollo
 
 ## Configuration
 
-Apollo client can be configured through `src/quasar-app-extension-apollo/apollo-client-config.js`
+Apollo client can be configured through `src/quasar-app-extension-apollo/apollo-client-config.js`.
+
+For advanced configuration needs, the extension provides two hooks, one gets called before the apollo client instantiation and the other afterwards. The hooks are `apolloClientBeforeCreate` and `apolloClientAfterCreate`, and can be modified as needed in `src/quasar-app-extension-apollo/apollo-client-hooks.js`.
 
 ## Usage
 
