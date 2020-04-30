@@ -2,6 +2,7 @@ import Vue from 'vue'
 import VueApollo from 'vue-apollo'
 import ApolloSSR from 'vue-apollo/ssr'
 import createApolloClient from '../graphql/create-apollo-client-ssr'
+import { apolloProviderBeforeCreate, apolloProviderAfterCreate } from 'src/quasar-app-extension-apollo/apollo-provider-hooks'
 
 // Install the vue plugin
 Vue.use(VueApollo)
@@ -10,8 +11,16 @@ export default ({ app, router, store, ssrContext, urlPath, redirect }) => {
   // create an 'apollo client' instance
   const apolloClient = createApolloClient({ app, router, store, ssrContext, urlPath, redirect })
 
+  const apolloProviderConfigObj = { defaultClient: apolloClient }
+
+  // run hook before creating apollo provider instance
+  apolloProviderBeforeCreate({ apolloProviderConfigObj, app, router, store, ssrContext, urlPath, redirect })
+
   // create an 'apollo provider' instance
-  const apolloProvider = new VueApollo({ defaultClient: apolloClient })
+  const apolloProvider = new VueApollo(apolloProviderConfigObj)
+
+  // run hook after creating apollo provider instance
+  apolloProviderAfterCreate({ apolloProvider, app, router, store, ssrContext, urlPath, redirect })
 
   // attach created 'apollo provider' instance to the app
   app.apolloProvider = apolloProvider
