@@ -9,7 +9,7 @@
 
 This is the official Quasar App-Extension for adding GraphQL to your Quasar project.
 
-## Introduction
+## Introductions
 
 This app extension adds GraphQL support to your Quasar projects.
 
@@ -46,21 +46,21 @@ quasar ext remove @quasar/apollo
 
 **Note:** The added code to the html template file (`src/index.template.html`) will be removed.
 
-**Warning** Added directory `src/quasar-app-extension-apollo` will be removed, if you need, make a backup before uninstalling the extension.
+**Warning** Added directory `src/apollo` will be removed, if you need, make a backup before uninstalling the extension.
 
 ## Configuration
 
-Apollo client can be configured through `src/quasar-app-extension-apollo/apollo-client-config.js`.
+Apollo client can be configured through `src/apollo/apollo-client-config.js`.
 
 ## Advanced configuration
 
 ### Apollo client
 
-The extension provides two hooks, one gets called before the apollo client instantiation and the other afterwards. The hooks are `apolloClientBeforeCreate` and `apolloClientAfterCreate`, and can be modified as needed in `src/quasar-app-extension-apollo/apollo-client-hooks.js`.
+The extension provides two hooks, one gets called before the apollo client instantiation and the other afterwards. The hooks are `apolloClientBeforeCreate` and `apolloClientAfterCreate`, and can be modified as needed in `src/apollo/apollo-client-hooks.js`.
 
 ### Apollo provider
 
-The extension provides two hooks, one gets called before the apollo provider instantiation and the other afterwards. The hooks are `apolloProviderBeforeCreate` and `apolloProviderAfterCreate`, and can be modified as needed in `src/quasar-app-extension-apollo/apollo-provider-hooks.js`.
+The extension provides two hooks, one gets called before the apollo provider instantiation and the other afterwards. The hooks are `apolloProviderBeforeCreate` and `apolloProviderAfterCreate`, and can be modified as needed in `src/apollo/apollo-provider-hooks.js`.
 
 ## Usage
 
@@ -75,9 +75,7 @@ Example usage:
   <q-page>
     <!-- when the query response is not received yet, data from it is undefined,
     so before referring to it we need to use v-if -->
-    <div v-if="post">
-      GraphQL query result:<br>{{ post.title }}
-    </div>
+    <div v-if="post">GraphQL query result:<br />{{ post.title }}</div>
     <div v-else>
       loading...
     </div>
@@ -85,22 +83,24 @@ Example usage:
 </template>
 
 <script>
-import gql from 'graphql-tag'
+  import gql from 'graphql-tag'
 
-export default {
-  name: 'PageIndex',
+  export default {
+    name: 'PageIndex',
 
-  // https://apollo.vuejs.org/guide/apollo/#usage-in-vue-components
-  apollo: {
-    post: {
-      query: gql`query {
-        post(id: 5) {
-          title
-        }
-      }`
+    // https://apollo.vuejs.org/guide/apollo/#usage-in-vue-components
+    apollo: {
+      post: {
+        query: gql`
+          query {
+            post(id: 5) {
+              title
+            }
+          }
+        `
+      }
     }
   }
-}
 </script>
 ```
 
@@ -123,5 +123,3 @@ In order for the [vue-apollo components](https://apollo.vuejs.org/guide/componen
       })
   }
 ```
-
-
