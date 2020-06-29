@@ -17,8 +17,8 @@ function extendConf (conf, api) {
 
 module.exports = function (api) {
   // quasar compatibility check
-  api.compatibleWith('quasar', '^1.1.1')
-  api.compatibleWith('@quasar/app', '^1.1.0')
+  api.compatibleWith('quasar', '>=1.1.1')
+  api.compatibleWith('@quasar/app', '>=1.1.0')
 
   // extend quasar config
   api.extendQuasarConf(extendConf)
