@@ -1,7 +1,12 @@
 const fs = require('fs')
 
 // get the html that will be injected inside 'src/index.template.html'
-const graphqlHtml = require('./exports').graphqlHtml
+let graphqlHtml
+if(api.getPackageVersion('@quasar/app') >= '2.0.0') {
+  graphqlHtml = require('./exportsV2').graphqlHtml
+} else {
+  graphqlHtml = require('./exports').graphqlHtml
+}
 
 module.exports = function (api) {
   // get the app html template
