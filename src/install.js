@@ -1,14 +1,16 @@
 const fs = require('fs')
 
-// get the html that will be injected inside 'src/index.template.html'
-let graphqlHtml
-if(api.getPackageVersion('@quasar/app') >= '2.0.0') {
-  graphqlHtml = require('./exportsV2').graphqlHtml
-} else {
-  graphqlHtml = require('./exports').graphqlHtml
-}
-
 module.exports = function (api) {
+
+  // get the html that will be injected inside 'src/index.template.html'
+  let graphqlHtml
+
+  if (api.getPackageVersion('@quasar/app') >= '2.0.0') {
+    graphqlHtml = require('./exportsV2').graphqlHtml
+  } else {
+    graphqlHtml = require('./exports').graphqlHtml
+  }
+  
   // get the app html template
   const template = api.resolve.src('index.template.html')
 
