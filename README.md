@@ -27,6 +27,26 @@ Quasar CLI will retrieve the extension from NPM ([@quasar/quasar-app-extension-a
 
 **Note:** Some code will be added to the html template file of your app (`src/index.template.html`)
 
+### Configure `quasar.conf.js` so .Vue files work Apollo client's "Tagged Template Strings"
+
+In order for the [vue-apollo components](https://apollo.vuejs.org/guide/components/) to work, you must turn on a special transform so vue-loader doesn't fail on those new tags. Add the below code to the `build` property in your `quasar.conf.js` file.
+
+```javascript
+  chainWebpack (chain, { isServer, isClient }) {
+    chain.module.rule('vue')
+      .use('vue-loader')
+      .loader('vue-loader')
+      .tap(options => {
+        options.transpileOptions = {
+          transforms: {
+            dangerousTaggedTemplateString: true
+          }
+        }
+        return options
+      })
+  }
+```
+
 ## Prompts
 
 You will be prompted to enter the URI of your GraphQL endpoint. You can skip this and instead provide the URI using an environment variable when running Quasar:
@@ -43,6 +63,8 @@ If you don't have a GraphQL endpoint yet, you can create one to experiment with 
 ```sh
 quasar ext remove @quasar/apollo
 ```
+
+And remove the chainWebpack code from `quasar.conf.js`
 
 **Note:** The added code to the html template file (`src/index.template.html`) will be removed.
 
@@ -102,24 +124,4 @@ Example usage:
     }
   }
 </script>
-```
-
-## IMPORTANT: Needed to get vue-apollo's components to work (with Vue)
-
-In order for the [vue-apollo components](https://apollo.vuejs.org/guide/components/) to work, you must turn on a special transform so vue-loader doesn't fail on those new tags. Add the below code to the `build` property in your `quasar.conf.js` file.
-
-```javascript
-  chainWebpack (chain, { isServer, isClient }) {
-    chain.module.rule('vue')
-      .use('vue-loader')
-      .loader('vue-loader')
-      .tap(options => {
-        options.transpileOptions = {
-          transforms: {
-            dangerousTaggedTemplateString: true
-          }
-        }
-        return options
-      })
-  }
 ```
