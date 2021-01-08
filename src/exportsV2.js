@@ -5,7 +5,7 @@
 // https://ssr.vuejs.org/guide/build-config.html#manual-asset-injection
 module.exports.graphqlHtml = `
     <% // added by 'quasar-app-extension-apollo' %>
-    <% if (ctx.mode.ssr && process.env.ssr) { %>
+    <% if (ctx.mode.ssr && process.env.MODE === 'ssr') { %>
       {{{ renderState({ contextKey: 'apolloState', windowKey: '__APOLLO_STATE__' }) }}}
     <% } %>
   `
