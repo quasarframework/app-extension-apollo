@@ -12,7 +12,10 @@ function extendConf (conf, api) {
 
   // allow overriding of graphql uri using an env variable
   // https://quasar.dev/quasar-cli/cli-documentation/handling-process-env#Adding-to-process.env
-  conf.build.env.GRAPHQL_URI = JSON.stringify(process.env.GRAPHQL_URI)
+  conf.build.env.GRAPHQL_URI =
+    api.getPackageVersion("@quasar/app") >= "2.0.0"
+      ? process.env.GRAPHQL_URI // @quasar/app v2 already stringifies env properties
+      : JSON.stringify(process.env.GRAPHQL_URI);
 }
 
 module.exports = function (api) {
