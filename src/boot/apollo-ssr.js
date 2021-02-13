@@ -1,6 +1,7 @@
 import Vue from 'vue';
 import VueApollo from 'vue-apollo';
 import ApolloSSR from 'vue-apollo/ssr';
+import getApolloClientConfig from '../graphql/get-apollo-client-config';
 import createApolloClient from '../graphql/create-apollo-client-ssr';
 import {
   apolloProviderBeforeCreate,
@@ -10,9 +11,17 @@ import {
 // Install the vue plugin
 Vue.use(VueApollo);
 
-export default ({ app, router, store, ssrContext, urlPath, redirect }) => {
-  // create an 'apollo client' instance
-  const apolloClient = createApolloClient({
+export default async ({ app, router, store, ssrContext, urlPath, redirect }) => {
+ const cfg = getApolloClientConfig({
+    app,
+    router,
+    store,
+    ssrContext,
+    urlPath,
+    redirect
+  });
+
+  const apolloClient = await createApolloClient({
     app,
     router,
     store,
@@ -24,7 +33,7 @@ export default ({ app, router, store, ssrContext, urlPath, redirect }) => {
   const apolloProviderConfigObj = { defaultClient: apolloClient };
 
   // run hook before creating apollo provider instance
-  apolloProviderBeforeCreate({
+  await apolloProviderBeforeCreate({
     apolloProviderConfigObj,
     app,
     router,
@@ -38,7 +47,7 @@ export default ({ app, router, store, ssrContext, urlPath, redirect }) => {
   const apolloProvider = new VueApollo(apolloProviderConfigObj);
 
   // run hook after creating apollo provider instance
-  apolloProviderAfterCreate({
+  await apolloProviderAfterCreate({
     apolloProvider,
     app,
     router,

@@ -2,7 +2,6 @@ import { ApolloClient } from 'apollo-client';
 import { HttpLink } from 'apollo-link-http';
 import { InMemoryCache } from 'apollo-cache-inmemory';
 import fetch from 'node-fetch';
-import getApolloClientConfig from './get-apollo-client-config';
 import {
   apolloClientBeforeCreate,
   apolloClientAfterCreate
@@ -14,7 +13,8 @@ import {
 const onServer = process.env.SERVER;
 
 // function that returns an 'apollo client' instance
-export default function ({
+export default async function ({
+  cfg,
   app,
   router,
   store,
@@ -22,7 +22,8 @@ export default function ({
   urlPath,
   redirect
 }) {
-  const cfg = getApolloClientConfig({
+
+  const cfg = await getApolloClientConfig({
     app,
     router,
     store,
@@ -51,7 +52,7 @@ export default function ({
   const apolloClientConfigObj = { link, cache, ...cfg.additionalConfig };
 
   // run hook before creating apollo client instance
-  apolloClientBeforeCreate({
+  await apolloClientBeforeCreate({
     apolloClientConfigObj,
     app,
     router,
@@ -65,7 +66,7 @@ export default function ({
   const apolloClient = new ApolloClient(apolloClientConfigObj);
 
   // run hook after creating apollo client instance
-  apolloClientAfterCreate({
+  await apolloClientAfterCreate({
     apolloClient,
     app,
     router,
