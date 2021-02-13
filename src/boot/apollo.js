@@ -26,7 +26,7 @@ export default async ({ app, router, store, urlPath, redirect }) => {
   const apolloProviderConfigObj = { defaultClient: apolloClient };
 
   // run hook before creating apollo provider instance
-   await apolloProviderBeforeCreate({
+  await apolloProviderBeforeCreate({
     apolloProviderConfigObj,
     app,
     router,
