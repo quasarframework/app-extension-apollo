@@ -13,7 +13,7 @@ import {
 const onServer = process.env.SERVER;
 
 // function that returns an 'apollo client' instance
-export default function ({
+export default async function ({
   cfg,
   app,
   router,
@@ -22,6 +22,16 @@ export default function ({
   urlPath,
   redirect
 }) {
+
+  const cfg = await getApolloClientConfig({
+    app,
+    router,
+    store,
+    ssrContext,
+    urlPath,
+    redirect
+  });
+
   // when on server, we use 'node-fetch' polyfill
   // https://www.apollographql.com/docs/link/links/http/#fetch-polyfill
   if (onServer) {
@@ -42,7 +52,7 @@ export default function ({
   const apolloClientConfigObj = { link, cache, ...cfg.additionalConfig };
 
   // run hook before creating apollo client instance
-  apolloClientBeforeCreate({
+  await apolloClientBeforeCreate({
     apolloClientConfigObj,
     app,
     router,
@@ -56,7 +66,7 @@ export default function ({
   const apolloClient = new ApolloClient(apolloClientConfigObj);
 
   // run hook after creating apollo client instance
-  apolloClientAfterCreate({
+  await apolloClientAfterCreate({
     apolloClient,
     app,
     router,

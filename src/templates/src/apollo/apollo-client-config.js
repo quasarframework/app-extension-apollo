@@ -1,4 +1,4 @@
-export default function (/* { app, router, store, ssrContext, urlPath, redirect } */) {
+export default async function (/* { app, router, store, ssrContext, urlPath, redirect } */) {
   return {
     default: {
       // 'apollo-link-http' config

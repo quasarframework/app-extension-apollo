@@ -1,9 +1,15 @@
 const fs = require('fs');
 
-// get the graphql html that will be removed from 'src/index.template.html'
-const graphqlHtml = require('./exports').graphqlHtml;
-
 module.exports = function (api) {
+// get the graphql html that will be removed from 'src/index.template.html'
+  let graphqlHtml
+
+  if (api.getPackageVersion('@quasar/app') >= '2.0.0') {
+    graphqlHtml = require('./exportsV2').graphqlHtml
+  } else {
+    graphqlHtml = require('./exports').graphqlHtml
+  }
+
   // get the app html template
   const template = api.resolve.src('index.template.html');
 
