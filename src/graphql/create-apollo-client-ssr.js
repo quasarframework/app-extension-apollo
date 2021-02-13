@@ -2,7 +2,6 @@ import { ApolloClient } from 'apollo-client';
 import { HttpLink } from 'apollo-link-http';
 import { InMemoryCache } from 'apollo-cache-inmemory';
 import fetch from 'node-fetch';
-import getApolloClientConfig from './get-apollo-client-config';
 import {
   apolloClientBeforeCreate,
   apolloClientAfterCreate
@@ -15,6 +14,7 @@ const onServer = process.env.SERVER;
 
 // function that returns an 'apollo client' instance
 export default async function ({
+  cfg,
   app,
   router,
   store,
@@ -22,6 +22,7 @@ export default async function ({
   urlPath,
   redirect
 }) {
+
   const cfg = await getApolloClientConfig({
     app,
     router,
