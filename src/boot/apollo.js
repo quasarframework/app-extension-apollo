@@ -1,5 +1,6 @@
 import Vue from 'vue';
 import VueApollo from 'vue-apollo';
+import getApolloClientConfig from '../graphql/get-apollo-client-config';
 import createApolloClient from '../graphql/create-apollo-client';
 import {
   apolloProviderBeforeCreate,
@@ -10,8 +11,11 @@ import {
 Vue.use(VueApollo);
 
 export default async ({ app, router, store, urlPath, redirect }) => {
+  const cfg = await getApolloClientConfig({ app, router, store, urlPath, redirect });
+
   // create an 'apollo client' instance
   const apolloClient = await createApolloClient({
+    cfg,
     app,
     router,
     store,
