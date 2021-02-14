@@ -9,7 +9,7 @@ const quasarMode = process.env.MODE;
 // https://quasar.dev/quasar-cli/cli-documentation/handling-process-env#Values-supplied-by-Quasar-CLI
 const onServer = process.env.SERVER;
 
-export default function ({
+export default async function ({
   app,
   router,
   store,
@@ -18,7 +18,7 @@ export default function ({
   redirect
 }) {
   // get raw configuration provided by the app
-  const rawConfig = config({
+  const rawConfig = await config({
     app,
     router,
     store,
