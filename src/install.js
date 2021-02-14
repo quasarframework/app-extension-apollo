@@ -1,11 +1,12 @@
 const fs = require('fs')
+const semver = require('semver');
 
 module.exports = function (api) {
 
   // get the html that will be injected inside 'src/index.template.html'
   let graphqlHtml
 
-  if (api.getPackageVersion('@quasar/app') >= '2.0.0') {
+  if (semver.gte(api.getPackageVersion('@quasar/app'), '2.0.0')) {
     graphqlHtml = require('./exportsV2').graphqlHtml
   } else {
     graphqlHtml = require('./exports').graphqlHtml

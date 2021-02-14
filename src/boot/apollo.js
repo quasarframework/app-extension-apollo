@@ -11,10 +11,10 @@ import {
 Vue.use(VueApollo);
 
 export default async ({ app, router, store, urlPath, redirect }) => {
-  const cfg = getApolloClientConfig({ app, router, store, urlPath, redirect });
+  const cfg = await getApolloClientConfig({ app, router, store, urlPath, redirect });
 
   // create an 'apollo client' instance
-  const apolloClient = createApolloClient({
+  const apolloClient = await createApolloClient({
     cfg,
     app,
     router,
@@ -26,7 +26,7 @@ export default async ({ app, router, store, urlPath, redirect }) => {
   const apolloProviderConfigObj = { defaultClient: apolloClient };
 
   // run hook before creating apollo provider instance
-   await apolloProviderBeforeCreate({
+  await apolloProviderBeforeCreate({
     apolloProviderConfigObj,
     app,
     router,

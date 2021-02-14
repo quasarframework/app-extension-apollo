@@ -12,7 +12,7 @@ import {
 Vue.use(VueApollo);
 
 export default async ({ app, router, store, ssrContext, urlPath, redirect }) => {
- const cfg = getApolloClientConfig({
+ const cfg = await getApolloClientConfig({
     app,
     router,
     store,
@@ -21,7 +21,9 @@ export default async ({ app, router, store, ssrContext, urlPath, redirect }) => 
     redirect
   });
 
+  // create an 'apollo client' instance
   const apolloClient = await createApolloClient({
+    cfg,
     app,
     router,
     store,
