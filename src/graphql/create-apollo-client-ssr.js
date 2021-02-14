@@ -22,16 +22,6 @@ export default async function ({
   urlPath,
   redirect
 }) {
-
-  const cfg = await getApolloClientConfig({
-    app,
-    router,
-    store,
-    ssrContext,
-    urlPath,
-    redirect
-  });
-
   // when on server, we use 'node-fetch' polyfill
   // https://www.apollographql.com/docs/link/links/http/#fetch-polyfill
   if (onServer) {

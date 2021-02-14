@@ -8,9 +8,6 @@ import {
 
 // function that returns an 'apollo client' instance
 export default async function ({ cfg, app, router, store, urlPath, redirect }) {
-  
-  const cfg = await getApolloClientConfig({ app, router, store, urlPath, redirect });
-
   // create apollo client link
   const link = new HttpLink(cfg.httpLinkConfig);
 
