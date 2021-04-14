@@ -9,6 +9,8 @@
 
 This is the official Quasar App-Extension for adding GraphQL to your Quasar project.
 
+NOTE: If you are looking for the Quasar v2 (Vue3) compatible version, [check out the v2 branch](https://github.com/quasarframework/app-extension-apollo/tree/v2). 
+
 ## Introductions
 
 This app extension adds GraphQL support to your Quasar projects.
