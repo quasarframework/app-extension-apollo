@@ -1,0 +1,18 @@
+{
+  "compilerOptions": {
+    "esModuleInterop": true,
+    "module": "esnext",
+    "moduleResolution": "node",
+    "strict": true,
+    "target": "esnext",
+
+    "baseUrl": ".",
+    "paths": {
+      "src/*": ["src/templates/src/*"]
+    },
+
+    "outDir": "lib",
+    "rootDir": "./src"
+  },
+  "include": ["src/**/*"]
+}
