@@ -2,6 +2,7 @@
   "name": "@quasar/quasar-app-extension-apollo",
   "version": "2.0.0-alpha.1",
   "description": "A Quasar app extension to add GraphQL support using Apollo Client.",
+  "keywords": ["Quasar", "GraphQL", "Apollo"],
   "contributors": [
     "Scott Molinari <scott.molinari@adduco.de>",
     "Ejez <ejez@protonmail.ch>"
@@ -33,6 +34,7 @@
     "@apollo/client": "^3.3.11",
     "@vue/apollo-composable": "^4.0.0-alpha.12",
     "graphql": "^15.5.0",
-    "graphql-tag": "^2.11.0"
+    "graphql-tag": "^2.11.0",
+    "react": "^17.0.2"
   }
 }

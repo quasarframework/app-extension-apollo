@@ -1,5 +1,4 @@
 import { ApolloClient /*, createHttpLink */ } from '@apollo/client'
-import '@quasar/app/types/wrappers'
 import { boot } from 'quasar/wrappers'
 /* import type { BootFileParams } from '@quasar/app' */
 import { getClientOptions } from 'src/extensions/apollo/conf'

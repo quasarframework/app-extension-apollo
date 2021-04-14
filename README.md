@@ -34,7 +34,7 @@ Modify `src/App.vue` as shown below:
 <script lang="ts">
   import { defineComponent, provide } from 'vue'
   import { ApolloClients } from '@vue/apollo-composable'
-  import { apolloClients } from 'src/boot/apollo'
+  import { apolloClients } from 'src/extensions/apollo/boot'
 
   export default defineComponent({
     name: 'App',
