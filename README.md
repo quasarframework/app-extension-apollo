@@ -10,8 +10,10 @@ It uses [Apollo Client](https://www.apollographql.com) and [Vue Apollo](https://
 ## Installation
 
 ```sh
-quasar ext add @quasar/apollo
+quasar ext add @quasar/apollo@next
 ```
+
+**Note:** You need to use the `@next` tag until the final version of v2 of Quasar is released. At that point, we'll be moving v2 of the Apollo AE to the "latest" version and you will be able to install it without the `@next` tag. At that point, in order to install the older versions of the Apollo AE, you will need to add the version tag.
 
 Quasar CLI will retrieve the extension from NPM
 ([@quasar/quasar-app-extension-apollo](https://www.npmjs.com/package/@quasar/quasar-app-extension-apollo))
