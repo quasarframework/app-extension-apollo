@@ -1,0 +1,16 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "esModuleInterop": true,
+
+    // Forces to include "quasar" types even if not referenced into the code
+    // Needed to get typings of "@quasar/app" and "quasar/wrappers"
+    "types": ["quasar"],
+    // Ignores webpack and tapable conflicting types due to webpack-chain not supporting webpack5
+    "skipLibCheck": true,
+
+    "outDir": "lib/templates",
+    "rootDir": "./src/templates"
+  },
+  "include": ["src/templates/**/*"]
+}
