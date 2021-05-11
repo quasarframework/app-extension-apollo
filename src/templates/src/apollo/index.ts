@@ -1,9 +1,13 @@
-import { createHttpLink, InMemoryCache } from '@apollo/client'
+import type { ApolloClientOptions } from '@apollo/client/core'
+import { createHttpLink, InMemoryCache } from '@apollo/client/core'
+import type { BootFileParams } from '@quasar/app'
 
-export /* async */ function getClientOptions(/* {app, router, ...} */) {
-  return Object.assign(
+export /* async */ function getClientOptions(
+  /* {app, router, ...} */ options?: Partial<BootFileParams<any>>
+) {
+  return <ApolloClientOptions<unknown>>Object.assign(
     // General options.
-    {
+    <ApolloClientOptions<unknown>>{
       link: createHttpLink({
         uri:
           process.env.GRAPHQL_URI ||
@@ -11,7 +15,7 @@ export /* async */ function getClientOptions(/* {app, router, ...} */) {
           'https://example.com/graphql',
       }),
 
-      cache: new InMemoryCache({}),
+      cache: new InMemoryCache(),
     },
 
     // Specific Quasar mode options.
@@ -50,6 +54,7 @@ export /* async */ function getClientOptions(/* {app, router, ...} */) {
           //
         }
       : {},
+
     // dev/prod options.
     process.env.DEV
       ? {

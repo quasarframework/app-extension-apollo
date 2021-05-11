@@ -1,12 +1,11 @@
-import { ApolloClient /*, createHttpLink */ } from '@apollo/client'
+import { ApolloClient /*, createHttpLink */ } from '@apollo/client/core'
 import { boot } from 'quasar/wrappers'
-/* import type { BootFileParams } from '@quasar/app' */
-import { getClientOptions } from 'src/extensions/apollo/conf'
+import { getClientOptions } from 'src/apollo'
 
 export let apolloClients: Record<string, ApolloClient<unknown>>
 
 export default boot(
-  /* async */ (/* {app, router, ...}: BootFileParams<unknown> */) => {
+  /* async */ (/* {app, router, ...} */) => {
     // Default client.
     const options = /* await */ getClientOptions(/* {app, router ...} */)
     const apolloClient = new ApolloClient(options)

@@ -13,12 +13,12 @@ It uses [Apollo Client](https://www.apollographql.com) and [Vue Apollo](https://
 quasar ext add @quasar/apollo@next
 ```
 
-**Note:** You need to use the `@next` tag until the final version of v2 of Quasar is released. At that point, we'll be moving v2 of the Apollo AE to the "latest" version and you will be able to install it without the `@next` tag. At that point, in order to install the older versions of the Apollo AE, you will need to add the version tag. This version will also stay in beta until Vue-Apollo is final (out of alpha or beta). 
+**Note:** You need to use the `@next` tag until the final version of v2 of Quasar is released. At that point, we'll be moving v2 of the Apollo AE to the "latest" version and you will be able to install it without the `@next` tag. At that point, in order to install the older versions of the Apollo AE, you will need to add the version tag. This version will also stay in beta until Vue-Apollo is final (out of alpha or beta).
 
 Quasar CLI will retrieve the extension from NPM
 ([@quasar/quasar-app-extension-apollo](https://www.npmjs.com/package/@quasar/quasar-app-extension-apollo))
 
-The extension will add a directory `src/extensions/apollo`.
+The extension will add a configuration file into `src/apollo` and a boot file, register the latter into `quasar.conf.js > boot`.
 
 ### Prompts
 
@@ -36,7 +36,7 @@ Modify `src/App.vue` as shown below:
 <script lang="ts">
   import { defineComponent, provide } from 'vue'
   import { ApolloClients } from '@vue/apollo-composable'
-  import { apolloClients } from 'src/extensions/apollo/boot'
+  import { apolloClients } from 'boot/apollo'
 
   export default defineComponent({
     name: 'App',
@@ -53,12 +53,12 @@ Modify `src/App.vue` as shown below:
 quasar ext remove @quasar/apollo
 ```
 
-You might also wish to remove the added directory `src/extensions/apollo`.
+You might also wish to remove the added directory `src/apollo` and related boot file.
 
 ## Apollo client options
 
 Apollo client options can be customized in
-`src/extensions/apollo/conf/index.(ts|js)`.
+`src/apollo/index.(ts|js)`.
 
 You will need either to set the GraphQL endpoint in it, or set it as an
 environment variable before running Quasar:
@@ -119,7 +119,7 @@ Example usage:
 
 ## Multiple apollo clients setup
 
-Un-comment the relevant code in `src/extensions/apollo/boot.(ts|js)`
+Un-comment the relevant code in `boot/apollo.(ts|js)`
 
 The following is an example using `clientA` instead of the default client:
 
