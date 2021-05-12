@@ -5,6 +5,9 @@
     "moduleResolution": "node",
     "strict": true,
     "target": "esnext",
+    // Avoid warning for conflicting generated JS files,
+    // emitting is needed only in build config
+    "noEmit": true,
 
     "baseUrl": ".",
     "paths": {
