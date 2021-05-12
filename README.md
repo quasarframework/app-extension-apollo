@@ -18,34 +18,13 @@ quasar ext add @quasar/apollo@next
 Quasar CLI will retrieve the extension from NPM
 ([@quasar/quasar-app-extension-apollo](https://www.npmjs.com/package/@quasar/quasar-app-extension-apollo))
 
-The extension will add a configuration file into `src/apollo` and a boot file, register the latter into `quasar.conf.js > boot`.
+The extension will add a configuration file into `src/apollo` and a boot file.
+You'll need to manually register the latter into `quasar.conf.js > boot`.
 
 ### Prompts
 
 You will be prompted if your app has typescript support, if you answer yes,
 `*.ts` files will be added instead of `*.js`.
-
-### App.vue
-
-Modify `src/App.vue` as shown below:
-
-```html
-<template>
-  <router-view />
-</template>
-<script lang="ts">
-  import { defineComponent, provide } from 'vue'
-  import { ApolloClients } from '@vue/apollo-composable'
-  import { apolloClients } from 'boot/apollo'
-
-  export default defineComponent({
-    name: 'App',
-    setup() {
-      provide(ApolloClients, apolloClients)
-    },
-  })
-</script>
-```
 
 ## Uninstall
 
