@@ -15,20 +15,25 @@ module.exports = {
     browser: true,
   },
 
-  extends: [
-    'eslint:recommended',
-
-    'plugin:@typescript-eslint/recommended',
-    'plugin:@typescript-eslint/recommended-requiring-type-checking',
-
-    'prettier',
-  ],
-
-  plugins: ['@typescript-eslint'],
+  extends: ['eslint:recommended', 'prettier'],
 
   rules: {
     quotes: ['warn', 'single', { avoidEscape: true }],
-    '@typescript-eslint/explicit-function-return-type': 'off',
-    '@typescript-eslint/explicit-module-boundary-types': 'off',
   },
+
+  overrides: [
+    {
+      files: ['**/*.ts'],
+      plugins: ['@typescript-eslint'],
+      extends: [
+        'plugin:@typescript-eslint/recommended',
+        'plugin:@typescript-eslint/recommended-requiring-type-checking',
+        'prettier',
+      ],
+      rules: {
+        '@typescript-eslint/explicit-function-return-type': 'off',
+        '@typescript-eslint/explicit-module-boundary-types': 'off',
+      },
+    },
+  ],
 }

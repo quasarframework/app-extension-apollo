@@ -1,18 +1,18 @@
 {
   "compilerOptions": {
-    "esModuleInterop": true,
+    "allowJs": true,
     "module": "esnext",
     "moduleResolution": "node",
     "strict": true,
     "target": "esnext",
+    // Avoid warning for conflicting generated JS files,
+    // emitting is needed only in build config
+    "noEmit": true,
 
     "baseUrl": ".",
     "paths": {
       "src/*": ["src/templates/src/*"]
-    },
-
-    "outDir": "lib",
-    "rootDir": "./src"
+    }
   },
-  "include": ["src/**/*"]
+  "include": ["lib/templates", "src"]
 }
