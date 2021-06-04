@@ -119,5 +119,6 @@ The following is an example using `clientA` instead of the default client:
 
 An `apollo.config.js` configuration file for [Apollo GraphQL VSCode extension](https://www.apollographql.com/docs/devtools/editor-plugins/) ((`apollographql.vscode-apollo`)) will be automatically scaffolded.
 
-You should fill in the `client.server.url` property with the URL of the server exposing your GraphQL schema.
+You should fill in the `client.sevice.url` property with the URL of the server exposing your GraphQL schema, check [`client.service` documentation](https://www.apollographql.com/docs/devtools/apollo-config/#clientservice) to learn about other options.
+
 This extension will automatically connect to your remote server, read your GraphQL schema and provide autocomplete/schema errors detection for your GraphQL queries.
