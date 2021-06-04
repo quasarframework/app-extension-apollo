@@ -10,4 +10,8 @@ module.exports = function (api) {
   } else {
     api.render('../lib/templates')
   }
+
+  api.extendJsonFile('.vscode/extensions.json', {
+    recommendations: ['apollographql.vscode-apollo'],
+  })
 }
