@@ -1,4 +1,10 @@
 /* eslint-env node */
+
+function extendConf (conf) {
+  // register our boot file
+  conf.boot.push('~@quasar/quasar-app-extension-apollo/src/boot/apollo.ts')
+}
+
 module.exports = function (api) {
   // Quasar compatibility check.
   api.compatibleWith('quasar', '^2.0.0')
@@ -18,4 +24,7 @@ module.exports = function (api) {
   api.extendJsonFile('.vscode/extensions.json', {
     recommendations: ['apollographql.vscode-apollo'],
   })
+
+  // We extend /quasar.conf.js
+  api.extendQuasarConf(extendConf)
 }
