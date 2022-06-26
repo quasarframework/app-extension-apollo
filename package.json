@@ -1,6 +1,6 @@
 {
   "name": "@quasar/quasar-app-extension-apollo",
-  "version": "2.0.0-beta.3",
+  "version": "2.0.0-beta.4",
   "description": "A Quasar app extension to add GraphQL support using Apollo Client.",
   "keywords": [
     "quasar",
@@ -34,13 +34,13 @@
     "/lib"
   ],
   "devDependencies": {
-    "@quasar/app": "^3.0.0-beta.22",
+    "@quasar/app": "^3.0.0",
     "@typescript-eslint/eslint-plugin": "^4.22.1",
     "@typescript-eslint/parser": "^4.22.1",
     "eslint": "^7.26.0",
     "eslint-config-prettier": "^8.3.0",
     "prettier": "^2.3.0",
-    "quasar": "^2.0.0-beta.15"
+    "quasar": "^2.0.0"
   },
   "dependencies": {
     "@apollo/client": "^3.3.16",
