@@ -24,7 +24,3 @@ module.exports = function (api) {
   api.extendJsonFile('.vscode/extensions.json', {
     recommendations: ['apollographql.vscode-apollo'],
   })
-
-  // We extend /quasar.conf.js
-  api.extendQuasarConf(extendConf)
-}
