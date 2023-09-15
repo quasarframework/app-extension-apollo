@@ -1,7 +1,7 @@
-import { createHttpLink, InMemoryCache, split } from '@apollo/client/core'
+import { createHttpLink, InMemoryCache<% if (hasSubscriptions) { %>, split<% } %> } from '@apollo/client/core'<% if (hasSubscriptions) { %>
 import { GraphQLWsLink } from '@apollo/client/link/subscriptions'
 import { getMainDefinition } from '@apollo/client/utilities'
-import { createClient } from 'graphql-ws'
+import { createClient } from 'graphql-ws'<% } %>
 
 export /* async */ function getClientOptions(
   /* {app, router, ...} */ options
@@ -11,7 +11,7 @@ export /* async */ function getClientOptions(
       process.env.GRAPHQL_URI ||
       // Change to your graphql endpoint.
       '/graphql',
-  })
+  })<% if (hasSubscriptions) { %>
 
   const wsLink = new GraphQLWsLink(
     createClient({
@@ -46,12 +46,12 @@ export /* async */ function getClientOptions(
     },
     wsLink,
     httpLink
-  )
+  )<% } %>
 
   return Object.assign(
     // General options.
     {
-      link,
+      <% if (hasSubscriptions) { %>link,<% } else { %>link: httpLink,<% } %>
 
       cache: new InMemoryCache(),
     },

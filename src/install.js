@@ -13,6 +13,7 @@ module.exports = function (api) {
   const hasTypescript = api.prompts.typescript === true
   api.render(`./templates/${hasTypescript ? 'typescript' : 'no-typescript'}`, {
     hasVite: api.hasVite,
+    hasSubscriptions: api.prompts.subscriptions === true,
   })
 
   api.extendJsonFile('.vscode/extensions.json', {
