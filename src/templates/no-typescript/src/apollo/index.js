@@ -4,6 +4,7 @@ import { getMainDefinition } from '@apollo/client/utilities'
 import { createClient } from 'graphql-ws'<% } %>
 
 export /* async */ function getClientOptions(
+  // eslint-disable-next-line no-unused-vars
   /* {app, router, ...} */ options
 ) {
   const httpLink = createHttpLink({

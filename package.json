@@ -23,7 +23,7 @@
   "bugs": "https://github.com/quasarframework/app-extension-apollo/issues",
   "homepage": "https://quasar.dev",
   "scripts": {
-    "lint": "eslint --ext .js,.ts ./src/templates/",
+    "lint": "eslint --ext .js,.ts ./src/",
     "format": "prettier --write \"**/*.{json,md,graphql,vue,js,ts}\"",
     "deploy:beta": "yarn publish --tag beta",
     "deploy:latest": "yarn publish --tag latest"
@@ -33,13 +33,16 @@
     "/lib"
   ],
   "devDependencies": {
+    "@quasar/app-vite": "^1.6.2",
     "@typescript-eslint/eslint-plugin": "^6.7.0",
     "@typescript-eslint/parser": "^6.7.0",
     "eslint": "^8.49.0",
     "eslint-config-prettier": "^9.0.0",
+    "eslint-plugin-lodash-template": "^0.21.0",
     "prettier": "^3.0.3",
     "quasar": "^2.0.0",
-    "typescript": "^5.2.2"
+    "typescript": "^5.2.2",
+    "vue": "^3.3.4"
   },
   "dependencies": {
     "@apollo/client": "^3.8.3",
