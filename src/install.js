@@ -1,5 +1,8 @@
 /* eslint-env node */
 
+/**
+ * @param {import('@quasar/app-vite').InstallAPI} api
+ */
 module.exports = function (api) {
   // Quasar compatibility check.
   api.compatibleWith('quasar', '^2.0.0')

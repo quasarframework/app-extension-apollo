@@ -1,4 +1,7 @@
 /* eslint-env node */
+/**
+ * @param {import('@quasar/app-vite').IndexAPI} api
+ */
 module.exports = function (api) {
   api.extendQuasarConf((conf) => {
     // Allow overriding the graphql uri using an env variable
