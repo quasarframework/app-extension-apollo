@@ -12,12 +12,22 @@ module.exports = function (api) {
     api.compatibleWith('@quasar/app-webpack', '^3.3.3')
   }
 
+  const hasSubscriptions = api.prompts.subscriptions === true
+
   api.render('./templates/base')
   const hasTypescript = api.prompts.typescript === true
   api.render(`./templates/${hasTypescript ? 'typescript' : 'no-typescript'}`, {
     hasVite: api.hasVite,
-    hasSubscriptions: api.prompts.subscriptions === true,
+    hasSubscriptions
   })
+
+  if (hasSubscriptions) {
+    api.extendPackageJson({
+      dependencies: {
+        'graphql-ws': '^5.14.0'
+      },
+    })
+  }
 
   api.extendJsonFile('.vscode/extensions.json', {
     recommendations: ['apollographql.vscode-apollo'],

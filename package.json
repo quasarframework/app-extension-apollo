@@ -39,6 +39,7 @@
     "eslint": "^8.49.0",
     "eslint-config-prettier": "^9.0.0",
     "eslint-plugin-lodash-template": "^0.21.0",
+    "graphql-ws": "^5.14.0",
     "prettier": "^3.0.3",
     "quasar": "^2.0.0",
     "typescript": "^5.2.2",
@@ -48,7 +49,6 @@
     "@apollo/client": "^3.8.3",
     "@vue/apollo-composable": "^4.0.0-alpha.12",
     "graphql": "^15.5.0",
-    "graphql-tag": "^2.12.4",
-    "graphql-ws": "^5.14.0"
+    "graphql-tag": "^2.12.4"
   }
 }
