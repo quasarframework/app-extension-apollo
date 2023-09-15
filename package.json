@@ -25,9 +25,8 @@
   "scripts": {
     "lint": "eslint --ext .js,.ts ./src/templates/",
     "format": "prettier --write \"**/*.{json,md,graphql,vue,js,ts}\"",
-    "build": "rm -rf lib && tsc --project tsconfig.build.json && yarn format",
-    "deploy:beta": "yarn build && yarn publish --tag beta",
-    "deploy:latest": "yarn build && yarn publish --tag latest"
+    "deploy:beta": "yarn publish --tag beta",
+    "deploy:latest": "yarn publish --tag latest"
   },
   "files": [
     "/src",

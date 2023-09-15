@@ -9,10 +9,7 @@
     // emitting is needed only in build config
     "noEmit": true,
 
-    "baseUrl": ".",
-    "paths": {
-      "src/*": ["src/templates/src/*"]
-    }
+    "baseUrl": "."
   },
-  "include": ["lib/templates", "src"]
+  "include": ["src"]
 }

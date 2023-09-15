@@ -9,12 +9,9 @@ module.exports = function (api) {
     api.compatibleWith('@quasar/app', '^3.0.0')
   }
 
-  // Render templates in the app.
-  if (api.prompts.typescript) {
-    api.render('./templates')
-  } else {
-    api.render('../lib/templates')
-  }
+  api.render('./templates/base')
+  const hasTypescript = api.prompts.typescript === true
+  api.render(`./templates/${hasTypescript ? 'typescript' : 'no-typescript'}`)
 
   api.extendJsonFile('.vscode/extensions.json', {
     recommendations: ['apollographql.vscode-apollo'],
