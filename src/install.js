@@ -6,12 +6,14 @@ module.exports = function (api) {
   if (api.hasVite === true) {
     api.compatibleWith('@quasar/app-vite', '^1.0.0')
   } else {
-    api.compatibleWith('@quasar/app', '^3.0.0')
+    api.compatibleWith('@quasar/app-webpack', '^3.3.3')
   }
 
   api.render('./templates/base')
   const hasTypescript = api.prompts.typescript === true
-  api.render(`./templates/${hasTypescript ? 'typescript' : 'no-typescript'}`)
+  api.render(`./templates/${hasTypescript ? 'typescript' : 'no-typescript'}`, {
+    hasVite: api.hasVite,
+  })
 
   api.extendJsonFile('.vscode/extensions.json', {
     recommendations: ['apollographql.vscode-apollo'],

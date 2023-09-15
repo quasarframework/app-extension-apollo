@@ -1,2 +1,4 @@
 node_modules
 .eslintrc.js
+# TODO: Enable linting for template files after adding https://github.com/ota-meshi/eslint-plugin-lodash-template
+src/templates
