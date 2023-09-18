@@ -23,8 +23,12 @@ You'll need to manually register the latter into `quasar.conf.js > boot`.
 
 ### Prompts
 
-You will be prompted if your app has typescript support, if you answer yes,
+You will be prompted if your app has TypeScript support, if you answer yes,
 `*.ts` files will be added instead of `*.js`.
+
+You will also be prompted if you wish to use GraphQL subscriptions, if you
+answer yes, the necessary dependencies will be installed and some code will be
+scaffolded for you.
 
 ## Uninstall
 
@@ -49,6 +53,14 @@ GRAPHQL_URI=https://dev.example.com/graphql quasar dev
 
 If you don't have a GraphQL endpoint yet, you can create one to experiment
 with at [FakeQL](https://fakeql.com) or other similar services.
+
+If you are using GraphQL subscriptions, you will also need to set the
+WebSocket endpoint as an environment variable:
+
+```sh
+GRAPHQL_URI=https://prod.example.com/graphql GRAPHQL_WS_URI=wss://prod.example.com/graphql quasar build
+GRAPHQL_URI=https://dev.example.com/graphql GRAPHQL_WS_URI=wss://dev.example.com/graphql quasar dev
+```
 
 ## Usage
 
