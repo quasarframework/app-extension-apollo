@@ -1,9 +1,14 @@
 import type { ApolloClientOptions } from '@apollo/client/core'
-import { createHttpLink, InMemoryCache<% if (hasSubscriptions) { %>, split<% } %> } from '@apollo/client/core'
+import { createHttpLink, InMemoryCache } from '@apollo/client/core'
 import type { BootFileParams } from '@quasar/app-<%= hasVite ? 'vite' : 'webpack' %>'<% if (hasSubscriptions) { %>
+import { split } from '@apollo/client/link/core'
+import { getMainDefinition } from '@apollo/client/utilities'<% if (subscriptionsTransport === 'ws') { %>
 import { GraphQLWsLink } from '@apollo/client/link/subscriptions'
-import { getMainDefinition } from '@apollo/client/utilities'
-import { createClient } from 'graphql-ws'<% } %>
+import { createClient } from 'graphql-ws'<% } else if (subscriptionsTransport === 'sse') { %>
+import { ApolloLink, Operation, FetchResult } from '@apollo/client/link/core'
+import { Observable } from '@apollo/client/utilities'
+import { print } from 'graphql'
+import { createClient, ClientOptions, Client } from 'graphql-sse'<% } %><% } %>
 
 export /* async */ function getClientOptions(
   // eslint-disable-next-line @typescript-eslint/no-unused-vars, @typescript-eslint/no-explicit-any
@@ -14,9 +19,9 @@ export /* async */ function getClientOptions(
       process.env.GRAPHQL_URI ||
       // Change to your graphql endpoint.
       '/graphql',
-  })<% if (hasSubscriptions) { %>
+  })<% if (hasSubscriptions) { %><% if (subscriptionsTransport === 'ws') { %>
 
-  const wsLink = new GraphQLWsLink(
+  const subscriptionLink = new GraphQLWsLink(
     createClient({
       url:
         process.env.GRAPHQL_URI_WS ||
@@ -36,7 +41,49 @@ export /* async */ function getClientOptions(
       },
       */
     })
-  )
+  )<% } else if (subscriptionsTransport === 'sse') { %>
+
+  // See https://the-guild.dev/graphql/sse/recipes#with-apollo
+  class SSELink extends ApolloLink {
+    private client: Client;
+
+    constructor(options: ClientOptions) {
+      super();
+      this.client = createClient(options);
+    }
+
+    request(operation: Operation): Observable<FetchResult> {
+      return new Observable((sink) => {
+        return this.client.subscribe<FetchResult>(
+          { ...operation, query: print(operation.query) },
+          {
+            next: sink.next.bind(sink),
+            complete: sink.complete.bind(sink),
+            error: sink.error.bind(sink),
+          },
+        );
+      });
+    }
+  }
+  const subscriptionLink = new SSELink({
+    url:
+      process.env.GRAPHQL_URI_SSE ||
+      // Change to your graphql endpoint.
+      `http://${location.host}/graphql/stream`,
+    // If you have authentication, you can utilize headers:
+    /*
+    headers: () => {
+      const session = getSession(); // Change to your way of getting the session.
+      if (!session) {
+        return {};
+      }
+
+      return {
+        Authorization: `Bearer ${session.token}`,
+      };
+    },
+    */
+  })<% } %>
 
   const link = split(
     // split based on operation type
@@ -47,7 +94,7 @@ export /* async */ function getClientOptions(
         definition.operation === 'subscription'
       )
     },
-    wsLink,
+    subscriptionLink,
     httpLink
   )<% } %>
 

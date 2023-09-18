@@ -13,18 +13,26 @@ module.exports = function (api) {
   }
 
   const hasSubscriptions = api.prompts.subscriptions === true
+  const subscriptionsTransport = api.prompts.subscriptionsTransport
 
   api.render('./templates/base')
   const hasTypescript = api.prompts.typescript === true
   api.render(`./templates/${hasTypescript ? 'typescript' : 'no-typescript'}`, {
     hasVite: api.hasVite,
-    hasSubscriptions
+    hasSubscriptions,
+    subscriptionsTransport,
   })
 
-  if (hasSubscriptions) {
+  if (subscriptionsTransport === 'ws') {
     api.extendPackageJson({
       dependencies: {
         'graphql-ws': '^5.14.0'
+      },
+    })
+  } else if (subscriptionsTransport === 'sse') {
+    api.extendPackageJson({
+      dependencies: {
+        'graphql-sse': '^2.3.0'
       },
     })
   }

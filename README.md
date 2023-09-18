@@ -27,8 +27,11 @@ You will be prompted if your app has TypeScript support, if you answer yes,
 `*.ts` files will be added instead of `*.js`.
 
 You will also be prompted if you wish to use GraphQL subscriptions, if you
-answer yes, the necessary dependencies will be installed and some code will be
-scaffolded for you.
+answer yes, you will be prompted which subscription transport you wish to use. Available options are:
+ - Web Socket ([graphql-ws](https://github.com/enisdenjo/graphql-ws))
+ - SSE (Server-Sent Events) ([graphql-sse](https://github.com/enisdenjo/graphql-sse))
+After selecting the transport, the necessary dependencies will be installed and the initialization code
+will be scaffolded for you.
 
 ## Uninstall
 

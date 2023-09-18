@@ -24,7 +24,8 @@ module.exports = {
   settings: {
     'lodash-template/globals': [
       'hasVite',
-      'hasSubscriptions'
+      'hasSubscriptions',
+      'subscriptionsTransport'
     ]
   },
 
