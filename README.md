@@ -62,6 +62,9 @@ GRAPHQL_URI=https://prod.example.com/graphql GRAPHQL_WS_URI=wss://prod.example.c
 GRAPHQL_URI=https://dev.example.com/graphql GRAPHQL_WS_URI=wss://dev.example.com/graphql quasar dev
 ```
 
+You can [use dotenv in quasar.config file](https://quasar.dev/quasar-cli-vite/handling-process-env#using-dotenv)
+to set these environment variables in a more convenient way, if you wish.
+
 ## Usage
 
 Check the guide in [Vue Apollo docs](https://v4.apollo.vuejs.org/guide-composable/setup.html).
@@ -84,28 +87,18 @@ Example usage:
   </q-page>
 </template>
 
-<script lang="ts">
-  ...
-  import { useQuery } from '@vue/apollo-composable'
-  import gql from 'graphql-tag'
+<script setup lang="ts">
+import { useQuery } from '@vue/apollo-composable'
+import gql from 'graphql-tag'
 
-  export default defineComponent({
-    ...
-    setup () {
-       ...
-      const { result, loading, error } = useQuery(gql`
-        query getPosts {
-          post(id: "3") {
-            id
-            title
-          }
-        }
-      `)
-
-      return { /* your other items, */ result, loading, error }
+const { result, loading, error } = useQuery(gql`
+  query getPosts {
+    post(id: "3") {
+      id
+      title
     }
-  })
-</script>
+  }
+`)
 ```
 
 ## Multiple apollo clients setup
@@ -115,22 +108,22 @@ Un-comment the relevant code in `boot/apollo.(ts|js)`
 The following is an example using `clientA` instead of the default client:
 
 ```ts
-    ...
-    const { result, loading, error } = useQuery(gql`
-      query getPosts {
-        post(id: "3") {
-          id
-          title
-        }
-      }
-    `, null, { clientId: 'clientA' })
-    ...
+// ...
+const { result, loading, error } = useQuery(gql`
+  query getPosts {
+    post(id: "3") {
+      id
+      title
+    }
+  }
+`, null, { clientId: 'clientA' })
+// ...
 ```
 
 ## Tooling
 
 An `apollo.config.js` configuration file for [Apollo GraphQL VSCode extension](https://www.apollographql.com/docs/devtools/editor-plugins/) ((`apollographql.vscode-apollo`)) will be automatically scaffolded.
 
-You should fill in the `client.sevice.url` property with the URL of the server exposing your GraphQL schema, check [`client.service` documentation](https://www.apollographql.com/docs/devtools/apollo-config/#clientservice) to learn about other options.
+You should fill in the `client.service.url` property with the URL of the server exposing your GraphQL schema, check [`client.service` documentation](https://www.apollographql.com/docs/devtools/apollo-config/#clientservice) to learn about other options.
 
 This extension will automatically connect to your remote server, read your GraphQL schema and provide autocomplete/schema errors detection for your GraphQL queries.
