@@ -51,5 +51,19 @@
     "@vue/apollo-composable": "^4.0.0-alpha.12",
     "graphql": "^15.5.0",
     "graphql-tag": "^2.12.4"
+  },
+  "peerDependencies": {
+    "quasar": "^2.0.0",
+    "vue": "^3.0.0",
+    "graphql-sse": "^2.3.0",
+    "graphql-ws": "^5.14.0"
+  },
+  "peerDependenciesMeta": {
+    "graphql-ws": {
+      "optional": true
+    },
+    "graphql-sse": {
+      "optional": true
+    }
   }
 }
