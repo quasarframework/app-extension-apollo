@@ -29,6 +29,6 @@ module.exports = function () {
           value: 'sse',
         },
       ],
-    }
+    },
   ]
 }
