@@ -23,8 +23,16 @@ You'll need to manually register the latter into `quasar.conf.js > boot`.
 
 ### Prompts
 
-You will be prompted if your app has typescript support, if you answer yes,
+You will be prompted if your app has TypeScript support, if you answer yes,
 `*.ts` files will be added instead of `*.js`.
+
+You will also be prompted if you wish to use GraphQL subscriptions, if you
+answer yes, you will be prompted which subscription transport you wish to use. Available options are:
+
+- Web Socket ([graphql-ws](https://github.com/enisdenjo/graphql-ws))
+- SSE (Server-Sent Events) ([graphql-sse](https://github.com/enisdenjo/graphql-sse))
+  After selecting the transport, the necessary dependencies will be installed and the initialization code
+  will be scaffolded for you.
 
 ## Uninstall
 
@@ -50,6 +58,17 @@ GRAPHQL_URI=https://dev.example.com/graphql quasar dev
 If you don't have a GraphQL endpoint yet, you can create one to experiment
 with at [FakeQL](https://fakeql.com) or other similar services.
 
+If you are using GraphQL subscriptions, you will also need to set the
+WebSocket endpoint as an environment variable:
+
+```sh
+GRAPHQL_URI=https://prod.example.com/graphql GRAPHQL_WS_URI=wss://prod.example.com/graphql quasar build
+GRAPHQL_URI=https://dev.example.com/graphql GRAPHQL_WS_URI=wss://dev.example.com/graphql quasar dev
+```
+
+You can [use dotenv in quasar.config file](https://quasar.dev/quasar-cli-vite/handling-process-env#using-dotenv)
+to set these environment variables in a more convenient way, if you wish.
+
 ## Usage
 
 Check the guide in [Vue Apollo docs](https://v4.apollo.vuejs.org/guide-composable/setup.html).
@@ -72,28 +91,18 @@ Example usage:
   </q-page>
 </template>
 
-<script lang="ts">
-  ...
-  import { useQuery } from '@vue/apollo-composable'
-  import gql from 'graphql-tag'
+<script setup lang="ts">
+import { useQuery } from '@vue/apollo-composable'
+import gql from 'graphql-tag'
 
-  export default defineComponent({
-    ...
-    setup () {
-       ...
-      const { result, loading, error } = useQuery(gql`
-        query getPosts {
-          post(id: "3") {
-            id
-            title
-          }
-        }
-      `)
-
-      return { /* your other items, */ result, loading, error }
+const { result, loading, error } = useQuery(gql`
+  query getPosts {
+    post(id: "3") {
+      id
+      title
     }
-  })
-</script>
+  }
+`)
 ```
 
 ## Multiple apollo clients setup
@@ -103,22 +112,26 @@ Un-comment the relevant code in `boot/apollo.(ts|js)`
 The following is an example using `clientA` instead of the default client:
 
 ```ts
-    ...
-    const { result, loading, error } = useQuery(gql`
-      query getPosts {
-        post(id: "3") {
-          id
-          title
-        }
+// ...
+const { result, loading, error } = useQuery(
+  gql`
+    query getPosts {
+      post(id: "3") {
+        id
+        title
       }
-    `, null, { clientId: 'clientA' })
-    ...
+    }
+  `,
+  null,
+  { clientId: 'clientA' },
+)
+// ...
 ```
 
 ## Tooling
 
 An `apollo.config.js` configuration file for [Apollo GraphQL VSCode extension](https://www.apollographql.com/docs/devtools/editor-plugins/) ((`apollographql.vscode-apollo`)) will be automatically scaffolded.
 
-You should fill in the `client.sevice.url` property with the URL of the server exposing your GraphQL schema, check [`client.service` documentation](https://www.apollographql.com/docs/devtools/apollo-config/#clientservice) to learn about other options.
+You should fill in the `client.service.url` property with the URL of the server exposing your GraphQL schema, check [`client.service` documentation](https://www.apollographql.com/docs/devtools/apollo-config/#clientservice) to learn about other options.
 
 This extension will automatically connect to your remote server, read your GraphQL schema and provide autocomplete/schema errors detection for your GraphQL queries.

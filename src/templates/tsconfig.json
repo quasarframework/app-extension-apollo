@@ -1,0 +1,14 @@
+{
+  "compilerOptions": {
+    "module": "esnext",
+    "moduleResolution": "node",
+    "strict": true,
+    "target": "esnext",
+
+    "baseUrl": "./typescript",
+    "paths": {
+      "src/*": ["./src/*"]
+    }
+  },
+  "include": ["./index.d.ts", "./typescript/**/*.ts"]
+}

@@ -23,29 +23,47 @@
   "bugs": "https://github.com/quasarframework/app-extension-apollo/issues",
   "homepage": "https://quasar.dev",
   "scripts": {
-    "lint": "eslint --ext .js,.ts ./src/templates/",
+    "lint": "eslint --ext .js,.ts ./src/",
     "format": "prettier --write \"**/*.{json,md,graphql,vue,js,ts}\"",
-    "build": "rm -rf lib && tsc --project tsconfig.build.json && yarn format",
-    "deploy:beta": "yarn build && yarn publish --tag beta",
-    "deploy:latest": "yarn build && yarn publish --tag latest"
+    "deploy:beta": "yarn publish --tag beta",
+    "deploy:latest": "yarn publish --tag latest"
   },
   "files": [
     "/src",
     "/lib"
   ],
   "devDependencies": {
-    "@quasar/app": "^3.0.0",
-    "@typescript-eslint/eslint-plugin": "^4.22.1",
-    "@typescript-eslint/parser": "^4.22.1",
-    "eslint": "^7.26.0",
-    "eslint-config-prettier": "^8.3.0",
-    "prettier": "^2.3.0",
-    "quasar": "^2.0.0"
+    "@quasar/app-vite": "^1.6.2",
+    "@typescript-eslint/eslint-plugin": "^6.7.0",
+    "@typescript-eslint/parser": "^6.7.0",
+    "eslint": "^8.49.0",
+    "eslint-config-prettier": "^9.0.0",
+    "eslint-plugin-lodash-template": "^0.21.0",
+    "graphql-sse": "^2.3.0",
+    "graphql-ws": "^5.14.0",
+    "prettier": "^3.0.3",
+    "quasar": "^2.0.0",
+    "typescript": "^5.2.2",
+    "vue": "^3.3.4"
   },
   "dependencies": {
-    "@apollo/client": "^3.3.16",
+    "@apollo/client": "^3.8.3",
     "@vue/apollo-composable": "^4.0.0-alpha.12",
     "graphql": "^15.5.0",
     "graphql-tag": "^2.12.4"
+  },
+  "peerDependencies": {
+    "quasar": "^2.0.0",
+    "vue": "^3.0.0",
+    "graphql-sse": "^2.3.0",
+    "graphql-ws": "^5.14.0"
+  },
+  "peerDependenciesMeta": {
+    "graphql-ws": {
+      "optional": true
+    },
+    "graphql-sse": {
+      "optional": true
+    }
   }
 }
