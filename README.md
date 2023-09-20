@@ -33,6 +33,7 @@ answer yes, you will be prompted which subscription transport you wish to use. A
 
 - Web Socket ([graphql-ws](https://github.com/enisdenjo/graphql-ws))
 - SSE (Server-Sent Events) ([graphql-sse](https://github.com/enisdenjo/graphql-sse))
+
   After selecting the transport, the necessary dependencies will be installed and the initialization code
   will be scaffolded for you.
 
