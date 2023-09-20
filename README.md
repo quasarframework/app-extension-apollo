@@ -5,15 +5,17 @@
 This is the official Quasar app extension for adding GraphQL to your Quasar
 project.
 
-It uses [Apollo Client](https://www.apollographql.com) and [Vue Apollo](https://v4.apollo.vuejs.org).
+This AE uses [Apollo Client](https://www.apollographql.com) and [Vue Apollo](https://v4.apollo.vuejs.org).
 
 ## Installation
 
 ```sh
-quasar ext add @quasar/apollo@next
+quasar ext add @quasar/apollo
 ```
 
-**Note:** You need to use the `@next` tag until the final version of v2 of Quasar is released. At that point, we'll be moving v2 of the Apollo AE to the "latest" version and you will be able to install it without the `@next` tag. At that point, in order to install the older versions of the Apollo AE, you will need to add the version tag. This version will also stay in beta until Vue-Apollo is final (out of alpha or beta).
+**NOTE:** As of 2.1.0-beta.1, version 2 is now in the dev and default branch of the repository. It is also the version you'll get with the "normal" `@quasar/apollo` package. No need to use `@next` anymore.
+
+Version 1 has been deprecated and is no longer supported. If you wish to use it, you can install it with `@quasar/apollo@1.0.0-beta.8`.
 
 Quasar CLI will retrieve the extension from NPM
 ([@quasar/quasar-app-extension-apollo](https://www.npmjs.com/package/@quasar/quasar-app-extension-apollo))
