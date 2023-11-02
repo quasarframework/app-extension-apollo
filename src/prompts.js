@@ -1,16 +1,27 @@
+/* eslint-env node */
 module.exports = function () {
   return [
     {
-      // address of the graphql backend server
-      // you can override this 'uri' by using an env variable when running
-      // quasar commands, for example:
-      // `GRAPHQL_URI=https://prod.example.com/graphql quasar build`
-      // `GRAPHQL_URI=https://dev.example.com/graphql quasar dev`
-      name: 'graphql_uri',
-      type: 'input',
-      required: false,
-      message: 'GraphQL endpoint URI (You can skip it now and set it later)',
-      default: 'http://api.example.com'
-    }
+      name: 'subscriptions',
+      type: 'confirm',
+      message: 'Does your app use GraphQL subscriptions?',
+      default: false,
+    },
+    {
+      name: 'subscriptionsTransport',
+      type: 'list',
+      when: ({ subscriptions }) => subscriptions === true,
+      message: 'Which transport do you use for GraphQL subscriptions?',
+      choices: [
+        {
+          name: 'Web Socket (graphql-ws)',
+          value: 'ws',
+        },
+        {
+          name: 'SSE (Server-Sent Events) (graphql-sse)',
+          value: 'sse',
+        },
+      ],
+    },
   ]
 }
