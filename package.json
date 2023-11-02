@@ -1,18 +1,20 @@
 {
   "name": "@quasar/quasar-app-extension-apollo",
-  "version": "1.0.0-beta.8",
-  "description": "A Quasar app extension to add GraphQL support via Apollo Client and the vue-apollo plugin.",
+  "version": "2.2.0-beta.1",
+  "description": "A Quasar app extension to add GraphQL support using Apollo Client.",
+  "keywords": [
+    "quasar",
+    "graphql",
+    "apollo"
+  ],
   "contributors": [
+    "Scott Molinari <scott.molinari@adduco.de>",
     "Ejez <ejez@protonmail.ch>",
-    "Scott Molinari <scott.molinari@adduco.de>"
+    "Paolo 'Callo' Caleffi <p.caleffi@dreamonkey.com>"
   ],
   "license": "MIT",
   "publishConfig": {
     "access": "public"
-  },
-  "main": "src/index.js",
-  "scripts": {
-    "test": "echo \"No test specified\" && exit 0"
   },
   "repository": {
     "type": "git",
@@ -20,20 +22,48 @@
   },
   "bugs": "https://github.com/quasarframework/app-extension-apollo/issues",
   "homepage": "https://quasar.dev",
-  "engines": {
-    "node": ">= 8.9.0",
-    "npm": ">= 5.6.0",
-    "yarn": ">= 1.6.0"
+  "scripts": {
+    "lint": "eslint --ext .js,.ts ./src/",
+    "format": "prettier --write \"**/*.{json,md,graphql,vue,js,ts}\"",
+    "deploy:beta": "yarn publish --tag beta",
+    "deploy:latest": "yarn publish --tag latest"
   },
-  "dependencies": {
-    "apollo-cache-inmemory": "^1.6.5",
-    "apollo-client": "^2.6.8",
-    "apollo-link": "^1.2.13",
-    "apollo-link-http": "^1.5.16",
-    "graphql": "^14.6.0",
-    "graphql-tag": "^2.10.3",
-    "node-fetch": "^2.6.0",
-    "vue-apollo": "^3.0.3",
-    "webpack-merge": "^4.2.2"
+  "files": [
+    "/src",
+    "/lib"
+  ],
+  "devDependencies": {
+    "@apollo/client": "^3.8.6",
+    "@quasar/app-vite": "^1.6.2",
+    "@typescript-eslint/eslint-plugin": "^6.7.0",
+    "@typescript-eslint/parser": "^6.7.0",
+    "@vue/apollo-composable": "^4.0.0-beta.11",
+    "eslint": "^8.49.0",
+    "eslint-config-prettier": "^9.0.0",
+    "eslint-plugin-lodash-template": "^0.21.0",
+    "graphql": "^16.8.1",
+    "graphql-sse": "^2.3.0",
+    "graphql-ws": "^5.14.0",
+    "prettier": "^3.0.3",
+    "quasar": "^2.0.0",
+    "typescript": "^5.2.2",
+    "vue": "^3.3.4"
+  },
+  "peerDependencies": {
+    "@apollo/client": "^3.0.0",
+    "@vue/apollo-composable": "^4.0.0-alpha.12",
+    "graphql": "^15.0.0 || ^16.0.0",
+    "graphql-sse": "^2.3.0",
+    "graphql-ws": "^5.14.0",
+    "quasar": "^2.0.0",
+    "vue": "^3.0.0"
+  },
+  "peerDependenciesMeta": {
+    "graphql-ws": {
+      "optional": true
+    },
+    "graphql-sse": {
+      "optional": true
+    }
   }
 }
