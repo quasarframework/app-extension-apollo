@@ -42,7 +42,6 @@
     "eslint-config-prettier": "^9.0.0",
     "eslint-plugin-lodash-template": "^0.21.0",
     "graphql": "^16.8.1",
-    "graphql-tag": "^2.12.6",
     "graphql-sse": "^2.3.0",
     "graphql-ws": "^5.14.0",
     "prettier": "^3.0.3",
@@ -55,16 +54,12 @@
     "@vue/apollo-composable": "^4.0.0-alpha.12",
     "graphql": "^15.0.0 || ^16.0.0",
     "graphql-sse": "^2.3.0",
-    "graphql-tag": "^2.12.6",
     "graphql-ws": "^5.14.0",
     "quasar": "^2.0.0",
     "vue": "^3.0.0"
   },
   "peerDependenciesMeta": {
     "graphql-ws": {
-      "optional": true
-    },
-    "graphql-tag": {
       "optional": true
     },
     "graphql-sse": {

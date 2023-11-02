@@ -9,13 +9,6 @@ module.exports = function () {
       default: false,
     },
     {
-      name: 'gqlTag',
-      type: 'confirm',
-      message:
-        'Will you use `gql` template literal tag to define queries? See https://github.com/apollographql/graphql-tag',
-      default: true,
-    },
-    {
       name: 'subscriptions',
       type: 'confirm',
       message: 'Does your app use GraphQL subscriptions?',

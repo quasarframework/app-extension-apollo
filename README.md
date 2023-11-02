@@ -98,7 +98,7 @@ Example usage:
 
 <script setup lang="ts">
 import { useQuery } from '@vue/apollo-composable'
-import gql from 'graphql-tag'
+import { gql } from '@apollo/client/core'
 
 const { result, loading, error } = useQuery(gql`
   query getPosts {

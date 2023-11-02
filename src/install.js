@@ -85,12 +85,6 @@ module.exports = function (api) {
     subscriptionsTransport,
   })
 
-  if (api.prompts.gqlTag) {
-    extendPackageJson = __mergeDeep(extendPackageJson, {
-      dependencies: getCompatibleDevDependencies(['graphql-tag']),
-    })
-  }
-
   if (subscriptionsTransport === 'ws') {
     extendPackageJson = __mergeDeep(extendPackageJson, {
       dependencies: getCompatibleDevDependencies(['graphql-ws']),
