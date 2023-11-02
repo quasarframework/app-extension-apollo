@@ -1,13 +1,6 @@
 /* eslint-env node */
 module.exports = function () {
   return [
-    // TODO: Automatically detect TS support: https://github.com/quasarframework/app-extension-apollo/discussions/107#discussioncomment-7033817
-    {
-      name: 'typescript',
-      type: 'confirm',
-      message: 'Does your app have TypeScript support?',
-      default: false,
-    },
     {
       name: 'subscriptions',
       type: 'confirm',
