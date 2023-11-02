@@ -33,12 +33,15 @@
     "/lib"
   ],
   "devDependencies": {
+    "@apollo/client": "^3.8.6",
     "@quasar/app-vite": "^1.6.2",
     "@typescript-eslint/eslint-plugin": "^6.7.0",
     "@typescript-eslint/parser": "^6.7.0",
+    "@vue/apollo-composable": "^4.0.0-beta.11",
     "eslint": "^8.49.0",
     "eslint-config-prettier": "^9.0.0",
     "eslint-plugin-lodash-template": "^0.21.0",
+    "graphql": "^16.8.1",
     "graphql-sse": "^2.3.0",
     "graphql-ws": "^5.14.0",
     "prettier": "^3.0.3",
@@ -46,17 +49,14 @@
     "typescript": "^5.2.2",
     "vue": "^3.3.4"
   },
-  "dependencies": {
-    "@apollo/client": "^3.8.3",
-    "@vue/apollo-composable": "^4.0.0-alpha.12",
-    "graphql": "^15.5.0",
-    "graphql-tag": "^2.12.4"
-  },
   "peerDependencies": {
-    "quasar": "^2.0.0",
-    "vue": "^3.0.0",
+    "@apollo/client": "^3.0.0",
+    "@vue/apollo-composable": "^4.0.0-alpha.12",
+    "graphql": "^15.0.0 || ^16.0.0",
     "graphql-sse": "^2.3.0",
-    "graphql-ws": "^5.14.0"
+    "graphql-ws": "^5.14.0",
+    "quasar": "^2.0.0",
+    "vue": "^3.0.0"
   },
   "peerDependenciesMeta": {
     "graphql-ws": {

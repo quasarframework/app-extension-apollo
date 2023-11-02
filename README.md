@@ -13,7 +13,9 @@ This AE uses [Apollo Client](https://www.apollographql.com) and [Vue Apollo](htt
 quasar ext add @quasar/apollo
 ```
 
-**NOTE:** As of 2.1.0-beta.1, version 2 is now in the dev and default branch of the repository. It is also the version you'll get with the "normal" `@quasar/apollo` package. No need to use `@next` anymore.
+**NOTE:** As of 2.1.0-beta.1, version 2 is now in the dev and default branch of the repository. It is also the version you'll get with the "normal" `@quasar/apollo` package. No need to use `@next` tag anymore.
+
+> Since 2.1.0-beta.2 we externalized all deps for this AE: `graphql`, `graphql-tag`, `@apollo/client` and `@vue/apollo-composable`. If you installed a previous version, rerun `quasar ext add @quasar/apollo` command to have compatible deps added to your project `package.json`.
 
 Version 1 has been deprecated and is no longer supported. If you wish to use it, you can install it with `@quasar/apollo@1.0.0-beta.8`.
 
@@ -96,7 +98,7 @@ Example usage:
 
 <script setup lang="ts">
 import { useQuery } from '@vue/apollo-composable'
-import gql from 'graphql-tag'
+import { gql } from '@apollo/client/core'
 
 const { result, loading, error } = useQuery(gql`
   query getPosts {

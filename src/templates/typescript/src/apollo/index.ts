@@ -2,6 +2,7 @@ import type { ApolloClientOptions } from '@apollo/client/core'
 import { createHttpLink, InMemoryCache } from '@apollo/client/core'
 import type { BootFileParams } from '@quasar/app-<%= hasVite ? 'vite' : 'webpack' %>'<% if (hasSubscriptions) { %>
 import { split } from '@apollo/client/link/core'
+import { Kind, OperationTypeNode } from 'graphql';
 import { getMainDefinition } from '@apollo/client/utilities'<% if (subscriptionsTransport === 'ws') { %>
 import { GraphQLWsLink } from '@apollo/client/link/subscriptions'
 import { createClient } from 'graphql-ws'<% } else if (subscriptionsTransport === 'sse') { %>
@@ -90,8 +91,8 @@ export /* async */ function getClientOptions(
     ({ query }) => {
       const definition = getMainDefinition(query)
       return (
-        definition.kind === 'OperationDefinition' &&
-        definition.operation === 'subscription'
+        definition.kind === Kind.OPERATION_DEFINITION &&
+        definition.operation === OperationTypeNode.SUBSCRIPTION
       )
     },
     subscriptionLink,
