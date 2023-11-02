@@ -25,20 +25,22 @@ function getCompatibleDevDependencies(packageNames) {
 /**
  * @param {import('@quasar/app-vite').InstallAPI} api
  */
-module.exports = function (api) {
+module.exports = async function (api) {
   // Quasar compatibility check.
   api.compatibleWith('quasar', '^2.0.0')
-  if (api.hasVite === true) {
-    api.compatibleWith('@quasar/app-vite', '^1.0.0')
-  } else {
-    api.compatibleWith('@quasar/app-webpack', '^3.3.3')
+  if (api.hasVite) {
+    // PromptsAPI and hasTypescript() are only available from v1.6.0 onwards
+    api.compatibleWith('@quasar/app-vite', '^v1.6.0');
+  } else if (api.hasWebpack) {
+    // PromptsAPI and hasTypescript() are only available from v3.11.0 onwards
+    api.compatibleWith('@quasar/app-webpack', '^3.11.0');
   }
 
   const hasSubscriptions = api.prompts.subscriptions === true
   const subscriptionsTransport = api.prompts.subscriptionsTransport
 
   api.render('./templates/base')
-  const hasTypescript = api.prompts.typescript === true
+  const hasTypescript = api.hasTypescript()
   api.render(`./templates/${hasTypescript ? 'typescript' : 'no-typescript'}`, {
     hasVite: api.hasVite,
     hasSubscriptions,
