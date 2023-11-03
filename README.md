@@ -15,7 +15,7 @@ quasar ext add @quasar/apollo
 
 **NOTE:** As of 2.1.0-beta.1, version 2 is now in the dev and default branch of the repository. It is also the version you'll get with the "normal" `@quasar/apollo` package. No need to use `@next` tag anymore.
 
-**IMPORTANT** Since version 2.2.0-beta.1 we externalized all deps for this AE: `graphql`, `graphql-tag`, `@apollo/client` and `@vue/apollo-composable`. If you installed a previous version, rerun `quasar ext add @quasar/apollo` command to have compatible deps added to your project's `package.json`.
+**IMPORTANT** Since version 2.2.0-beta.2 we externalized all deps for this AE: `graphql`, `graphql-tag`, `@apollo/client` and `@vue/apollo-composable`. If you installed a previous version, rerun `quasar ext add @quasar/apollo` command to have compatible deps added to your project's `package.json`.
 
 Version 1 has been deprecated and is no longer supported. If you wish to use it, you can install it with `@quasar/apollo@1.0.0-beta.8`.
 
