@@ -65,7 +65,7 @@ let extendPackageJson = {
 /**
  * @param {import('@quasar/app-vite').InstallAPI} api
  */
-module.exports = async function (api) {
+module.exports = async function(api) {
   // Quasar compatibility check.
   api.compatibleWith('quasar', '^2.0.0')
   if (api.hasVite) {
@@ -80,7 +80,7 @@ module.exports = async function (api) {
   const subscriptionsTransport = api.prompts.subscriptionsTransport
 
   api.render('./templates/base')
-  const hasTypescript = api.hasTypescript()
+  const hasTypescript = await api.hasTypescript()
   api.render(`./templates/${hasTypescript ? 'typescript' : 'no-typescript'}`, {
     hasVite: api.hasVite,
     hasSubscriptions,
