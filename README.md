@@ -23,7 +23,21 @@ Quasar CLI will retrieve the extension from NPM
 ([@quasar/quasar-app-extension-apollo](https://www.npmjs.com/package/@quasar/quasar-app-extension-apollo))
 
 The extension will add a configuration file into `src/apollo` and a boot file.
-You'll need to manually register the latter into `quasar.conf.js > boot`.
+
+## Config File Entry
+
+**IMPORTANT** You'll need to manually register the boot file in `quasar.conf.js > boot`.
+
+Like so:
+```js
+export default configure((/* ctx */) => {
+  return {
+    boot: [
+      'apollo'
+    ],
+  // ....
+}
+```
 
 ### Prompts
 

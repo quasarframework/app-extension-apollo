@@ -102,4 +102,12 @@ module.exports = async function(api) {
   api.extendJsonFile('.vscode/extensions.json', {
     recommendations: ['apollographql.vscode-apollo'],
   })
+  api.onExitLog('##########################################################################')
+  api.onExitLog('#     ==Thank you for installing the Quasar Apollo App Extension==       #')
+  api.onExitLog('#                                                                        #')
+  api.onExitLog('# ⚠️ Please make sure to add the boot entry in your quasar.config.js file.#')
+  api.onExitLog('# ⚠️ See the Apollo App Extension README for more information.            #')
+  api.onExitLog('#   https://github.com/quasarframework/app-extension-apollo              #')
+  api.onExitLog('##########################################################################')
+
 }
