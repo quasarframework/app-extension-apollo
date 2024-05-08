@@ -1,4 +1,6 @@
-import { createHttpLink, InMemoryCache } from '@apollo/client/core'<% if (hasSubscriptions) { %>
+import { createHttpLink } from '@apollo/client/link/http/index.js'
+import { InMemoryCache } from '@apollo/client/cache/index.js'
+<% if (hasSubscriptions) { %>
 import { split } from '@apollo/client/link/core'
 import { Kind, OperationTypeNode } from 'graphql';
 import { getMainDefinition } from '@apollo/client/utilities'<% if (subscriptionsTransport === 'ws') { %>

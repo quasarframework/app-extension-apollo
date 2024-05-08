@@ -1,5 +1,6 @@
 import type { ApolloClientOptions } from '@apollo/client/core'
-import { createHttpLink, InMemoryCache } from '@apollo/client/core'
+import { createHttpLink } from '@apollo/client/link/http/index.js'
+import { InMemoryCache } from '@apollo/client/cache/index.js'
 import type { BootFileParams } from '@quasar/app-<%= hasVite ? 'vite' : 'webpack' %>'<% if (hasSubscriptions) { %>
 import { split } from '@apollo/client/link/core'
 import { Kind, OperationTypeNode } from 'graphql';
