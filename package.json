@@ -54,7 +54,7 @@
     "@vue/apollo-composable": "^4.0.0",
     "graphql": "^15.0.0 || ^16.0.0",
     "graphql-sse": "^2.3.0",
-    "graphql-ws": "^5.14.0",
+    "graphql-ws": "^6.0.0",
     "quasar": "^2.0.0",
     "vue": "^3.0.0"
   },
