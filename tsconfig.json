@@ -1,15 +1,13 @@
 {
   "compilerOptions": {
     "allowJs": true,
-    "module": "esnext",
-    "moduleResolution": "node",
+    "module": "ESNext",
+    "moduleResolution": "bundler",
     "strict": true,
     "target": "esnext",
     // Avoid warning for conflicting generated JS files,
     // emitting is needed only in build config
-    "noEmit": true,
-
-    "baseUrl": "."
+    "noEmit": true
   },
   "include": ["src"]
 }

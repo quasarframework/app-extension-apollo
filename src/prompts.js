@@ -1,5 +1,5 @@
 /* eslint-env node */
-module.exports = function () {
+export default function () {
   return [
     {
       name: 'subscriptions',

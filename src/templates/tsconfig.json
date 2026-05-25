@@ -1,13 +1,12 @@
 {
   "compilerOptions": {
-    "module": "esnext",
-    "moduleResolution": "node",
+    "module": "ESNext",
+    "moduleResolution": "bundler",
     "strict": true,
     "target": "esnext",
 
-    "baseUrl": "./typescript",
     "paths": {
-      "src/*": ["./src/*"]
+      "src/*": ["./typescript/src/*"]
     }
   },
   "include": ["./index.d.ts", "./typescript/**/*.ts"]

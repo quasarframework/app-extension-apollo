@@ -1,22 +1,22 @@
-import type { ApolloClientOptions } from '@apollo/client/core'
-import { createHttpLink } from '@apollo/client/link/http/index.js'
-import { InMemoryCache } from '@apollo/client/cache/index.js'
-import type { BootFileParams } from '@quasar/app-<%= hasVite ? 'vite' : 'webpack' %>'<% if (hasSubscriptions) { %>
-import { split } from '@apollo/client/link/core'
-import { Kind, OperationTypeNode } from 'graphql';
+import type { ApolloClientOptions } from '@apollo/client'
+import { HttpLink, InMemoryCache } from '@apollo/client'
+import type { BootFileParams } from '@quasar/app-vite'<% if (hasSubscriptions) { %>
+import { split } from '@apollo/client'
+import { Kind, OperationTypeNode } from 'graphql'
 import { getMainDefinition } from '@apollo/client/utilities'<% if (subscriptionsTransport === 'ws') { %>
 import { GraphQLWsLink } from '@apollo/client/link/subscriptions'
 import { createClient } from 'graphql-ws'<% } else if (subscriptionsTransport === 'sse') { %>
-import { ApolloLink, Operation, FetchResult } from '@apollo/client/link/core'
-import { Observable } from '@apollo/client/utilities'
+import { ApolloLink } from '@apollo/client'
+import type { FetchResult, Operation } from '@apollo/client'
+import { Observable } from 'rxjs'
 import { print } from 'graphql'
-import { createClient, ClientOptions, Client } from 'graphql-sse'<% } %><% } %>
+import { createClient, type ClientOptions, type Client } from 'graphql-sse'<% } %><% } %>
 
 export /* async */ function getClientOptions(
   // eslint-disable-next-line @typescript-eslint/no-unused-vars, @typescript-eslint/no-explicit-any
   /* {app, router, ...} */ options?: Partial<BootFileParams<any>>
 ) {
-  const httpLink = createHttpLink({
+  const httpLink = new HttpLink({
     uri:
       process.env.GRAPHQL_URI ||
       // Change to your graphql endpoint.
@@ -47,24 +47,24 @@ export /* async */ function getClientOptions(
 
   // See https://the-guild.dev/graphql/sse/recipes#with-apollo
   class SSELink extends ApolloLink {
-    private client: Client;
+    private client: Client
 
     constructor(options: ClientOptions) {
-      super();
-      this.client = createClient(options);
+      super()
+      this.client = createClient(options)
     }
 
     request(operation: Operation): Observable<FetchResult> {
-      return new Observable((sink) => {
+      return new Observable((subscriber) => {
         return this.client.subscribe<FetchResult>(
           { ...operation, query: print(operation.query) },
           {
-            next: sink.next.bind(sink),
-            complete: sink.complete.bind(sink),
-            error: sink.error.bind(sink),
+            next: (data) => subscriber.next(data),
+            complete: () => subscriber.complete(),
+            error: (err) => subscriber.error(err),
           },
-        );
-      });
+        )
+      })
     }
   }
   const subscriptionLink = new SSELink({
@@ -100,9 +100,9 @@ export /* async */ function getClientOptions(
     httpLink
   )<% } %>
 
-  return <ApolloClientOptions<unknown>>Object.assign(
+  return Object.assign(
     // General options.
-    <ApolloClientOptions<unknown>>{
+    {
       <% if (hasSubscriptions) { %>link,<% } else { %>link: httpLink,<% } %>
 
       cache: new InMemoryCache(),
@@ -169,5 +169,5 @@ export /* async */ function getClientOptions(
           ssrForceFetchDelay: 100,
         }
       : {}
-  )
+  ) as ApolloClientOptions
 }

@@ -1,5 +1,7 @@
 /* eslint-env node */
-const { join } = require('path')
+import { createRequire } from 'node:module'
+
+const require = createRequire(import.meta.url)
 
 // https://github.com/quasarframework/quasar-testing/blob/75e4fb524fd7767492a1cac66fe8169a5b29b6a6/packages/e2e-cypress/src/install.js#L11-L39
 // We need to use this because only the last `api.extendPackageJson` is executed, if multiple calls are made.
@@ -11,7 +13,6 @@ const { join } = require('path')
  * @param {...object} sources - Objects to merge
  * @returns {object} New object with merged key/values
  */
-
 function __mergeDeep(...sources) {
   let result = {}
   for (const source of sources) {
@@ -36,9 +37,7 @@ function __mergeDeep(...sources) {
 // https://github.com/quasarframework/quasar-testing/blob/75e4fb524fd7767492a1cac66fe8169a5b29b6a6/packages/e2e-cypress/src/install.js#L41-L55
 // We use devDependencies instead of peerDependencies because devDependencies are usually the latest version
 // and peerDependencies could contain a string supporting multiple major versions (e.g. "graphql": "^15.0.0 || ^16.0.0")
-const { devDependencies: aeDevDependencies } = require(
-  join(__dirname, '..', 'package.json'),
-)
+const { devDependencies: aeDevDependencies } = require('../package.json')
 
 /**
  * @param {string[]} packageNames
@@ -65,16 +64,9 @@ let extendPackageJson = {
 /**
  * @param {import('@quasar/app-vite').InstallAPI} api
  */
-module.exports = async function(api) {
-  // Quasar compatibility check.
+export default async function (api) {
   api.compatibleWith('quasar', '^2.0.0')
-  if (api.hasVite) {
-    // PromptsAPI and hasTypescript() are only available from v1.6.0 onwards
-    api.compatibleWith('@quasar/app-vite', '^1.6.0 || ^2.0.0-beta.9');
-  } else if (api.hasWebpack) {
-    // PromptsAPI and hasTypescript() are only available from v3.11.0 onwards
-    api.compatibleWith('@quasar/app-webpack', '^3.11.0 || ^4.0.0-beta.1');
-  }
+  api.compatibleWith('@quasar/app-vite', '^3.0.0-beta.1')
 
   const hasSubscriptions = api.prompts.subscriptions === true
   const subscriptionsTransport = api.prompts.subscriptionsTransport
@@ -82,7 +74,6 @@ module.exports = async function(api) {
   api.render('./templates/base')
   const hasTypescript = await api.hasTypescript()
   api.render(`./templates/${hasTypescript ? 'typescript' : 'no-typescript'}`, {
-    hasVite: api.hasVite,
     hasSubscriptions,
     subscriptionsTransport,
   })
@@ -92,8 +83,11 @@ module.exports = async function(api) {
       dependencies: getCompatibleDevDependencies(['graphql-ws']),
     })
   } else if (subscriptionsTransport === 'sse') {
+    // rxjs is scaffolded explicitly for SSE users because the SSELink
+    // imports Observable from 'rxjs' directly, requiring it as a declared dep
+    // (especially important for pnpm's strict dependency isolation).
     extendPackageJson = __mergeDeep(extendPackageJson, {
-      dependencies: getCompatibleDevDependencies(['graphql-sse']),
+      dependencies: getCompatibleDevDependencies(['graphql-sse', 'rxjs']),
     })
   }
 
@@ -109,5 +103,4 @@ module.exports = async function(api) {
   api.onExitLog('# ⚠️ See the Apollo App Extension README for more information.            #')
   api.onExitLog('#   https://github.com/quasarframework/app-extension-apollo              #')
   api.onExitLog('##########################################################################')
-
 }

@@ -1,13 +1,12 @@
-import { createHttpLink } from '@apollo/client/link/http/index.js'
-import { InMemoryCache } from '@apollo/client/cache/index.js'
+import { HttpLink, InMemoryCache } from '@apollo/client'
 <% if (hasSubscriptions) { %>
-import { split } from '@apollo/client/link/core'
-import { Kind, OperationTypeNode } from 'graphql';
+import { split } from '@apollo/client'
+import { Kind, OperationTypeNode } from 'graphql'
 import { getMainDefinition } from '@apollo/client/utilities'<% if (subscriptionsTransport === 'ws') { %>
 import { GraphQLWsLink } from '@apollo/client/link/subscriptions'
 import { createClient } from 'graphql-ws'<% } else if (subscriptionsTransport === 'sse') { %>
-import { ApolloLink } from '@apollo/client/link/core'
-import { Observable } from '@apollo/client/utilities'
+import { ApolloLink } from '@apollo/client'
+import { Observable } from 'rxjs'
 import { print } from 'graphql'
 import { createClient } from 'graphql-sse'<% } %><% } %>
 
@@ -15,7 +14,7 @@ export /* async */ function getClientOptions(
   // eslint-disable-next-line no-unused-vars
   /* {app, router, ...} */ options
 ) {
-  const httpLink = createHttpLink({
+  const httpLink = new HttpLink({
     uri:
       process.env.GRAPHQL_URI ||
       // Change to your graphql endpoint.
@@ -47,21 +46,21 @@ export /* async */ function getClientOptions(
   // See https://the-guild.dev/graphql/sse/recipes#with-apollo
   class SSELink extends ApolloLink {
     constructor(options) {
-      super();
-      this.client = createClient(options);
+      super()
+      this.client = createClient(options)
     }
 
     request(operation) {
-      return new Observable((sink) => {
+      return new Observable((subscriber) => {
         return this.client.subscribe(
           { ...operation, query: print(operation.query) },
           {
-            next: sink.next.bind(sink),
-            complete: sink.complete.bind(sink),
-            error: sink.error.bind(sink),
+            next: (data) => subscriber.next(data),
+            complete: () => subscriber.complete(),
+            error: (err) => subscriber.error(err),
           },
-        );
-      });
+        )
+      })
     }
   }
   const subscriptionLink = new SSELink({
