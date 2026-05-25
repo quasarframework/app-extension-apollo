@@ -1,8 +1,14 @@
 # app-extension-apollo
 
-> **v3 is in beta on the `next` branch** — targeting Apollo Client v4, Vue Apollo v5, and Vite 8.
-> Track progress and join the discussion in [issue #178](https://github.com/quasarframework/app-extension-apollo/issues/178).
-> Install the beta with: `quasar ext add @quasar/apollo@next`
+> **`@quasar/app-vite` v3 (Vite 8) users:** v2.3.0-beta.1 adds support with no other breaking changes.
+> Install with `quasar ext add @quasar/apollo@beta` to pick it up.
+>
+> **`@quasar/app-webpack` users:** there is no upgrade path from app-webpack to `@quasar/app-vite` v3
+> within this extension. Stay on v2.x and migrate your project to app-vite first.
+>
+> **Apollo Client v4 + Vue Apollo v5 beta** is tracked in
+> [issue #178](https://github.com/quasarframework/app-extension-apollo/issues/178).
+> Install with: `quasar ext add @quasar/apollo@next`
 
 ## Introduction
 
