@@ -1,6 +1,6 @@
 # app-extension-apollo
 
-> **v3 is in beta on the `next` branch** — targeting Apollo Client v4, Vue Apollo v5, and Vite 7.
+> **v3 is in beta on the `next` branch** — targeting Apollo Client v4, Vue Apollo v5, and Vite 8.
 > Track progress and join the discussion in [issue #178](https://github.com/quasarframework/app-extension-apollo/issues/178).
 > Install the beta with: `quasar ext add @quasar/apollo@next`
 
