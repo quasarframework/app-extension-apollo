@@ -1,7 +1,7 @@
 # app-extension-apollo
 
-> **`@quasar/app-vite` v3 (Vite 8) users:** v2.3.0 adds support with no other breaking changes.
-> Reinstall with `quasar ext add @quasar/apollo` to pick it up.
+> **`@quasar/app-vite` v3 (Vite 8) users:** v2.3.0-beta.1 adds support with no other breaking changes.
+> Install with `quasar ext add @quasar/apollo@beta` to pick it up.
 >
 > **`@quasar/app-webpack` users:** there is no upgrade path from app-webpack to `@quasar/app-vite` v3
 > within this extension. Stay on v2.x and migrate your project to app-vite first.
