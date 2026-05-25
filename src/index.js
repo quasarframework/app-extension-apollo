@@ -25,8 +25,9 @@ module.exports = function (api) {
     // `graphql` package does not work with Vite, so apply a workaround
     // See: https://github.com/quasarframework/app-extension-apollo/issues/154
     if (api.hasVite) {
-      conf.build.rawDefine = {
-        ...conf.build.rawDefine,
+      const defineKey = 'define' in conf.build ? 'define' : 'rawDefine'
+      conf.build[defineKey] = {
+        ...conf.build[defineKey],
         'globalThis.process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV)
       }
     }
