@@ -7,7 +7,7 @@ module.exports = function (api) {
   api.compatibleWith('quasar', '^2.0.0')
   if (api.hasVite) {
     // PromptsAPI and hasTypescript() are only available from v1.6.0 onwards
-    api.compatibleWith('@quasar/app-vite', '^1.6.0 || ^2.0.0-beta.9');
+    api.compatibleWith('@quasar/app-vite', '^1.6.0 || ^2.0.0-beta.9 || ^3.0.0-beta.1');
   } else if (api.hasWebpack) {
     // PromptsAPI and hasTypescript() are only available from v3.11.0 onwards
     api.compatibleWith('@quasar/app-webpack', '^3.11.0 || ^4.0.0-beta.1');
@@ -16,9 +16,10 @@ module.exports = function (api) {
   api.extendQuasarConf((conf, api) => {
     // Allow overriding the graphql uri using an env variable
     // https://quasar.dev/quasar-cli/handling-process-env#Adding-to-process.env
-    conf.build.env.GRAPHQL_URI = process.env.GRAPHQL_URI || ''
+    const envTarget = conf.build.defineEnv ?? conf.build.env
+    envTarget.GRAPHQL_URI = process.env.GRAPHQL_URI || ''
     if (api.prompts.subscriptions === true) {
-      conf.build.env.GRAPHQL_URI_WS = process.env.GRAPHQL_URI_WS || ''
+      envTarget.GRAPHQL_URI_WS = process.env.GRAPHQL_URI_WS || ''
     }
 
     // `graphql` package does not work with Vite, so apply a workaround
